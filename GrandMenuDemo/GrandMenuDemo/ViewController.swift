@@ -12,8 +12,12 @@ class ViewController: UIViewController {
     var grandMenu:GrandMenu?
     var grandMenuTable:GrandMenuTable?
     var arrControllers:[UIViewController]?
+    let colors = UIColor.allStarColor()
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "GrandMenuDemo"
+        let btn = UIBarButtonItem(title: "换色", style: .Plain, target: self, action: "changeColor")
+        navigationItem.rightBarButtonItem = btn
         grandMenu = GrandMenu(frame:CGRect(x: 0, y: 64, width: UIScreen.mainScreen().bounds.size.width, height: 40) , titles:  ["First","Second","Third","Fouth","Fifth"])
         grandMenu?.backgroundColor = UIColor.whiteColor()
         grandMenu?.selectMenu = scrollCallback
@@ -48,6 +52,17 @@ class ViewController: UIViewController {
     func scrollCallback(item:GrandMenuItem, index:Int){
         grandMenuTable?.selectIndex(index)
     }
-
+    
+    func changeColor(){
+        
+        let index = Int(arc4random()) % colors.count
+        grandMenu?.itemSeletedColor = colors[index]
+        grandMenu?.sliderColor = colors[index]
+    }
 }
 
+extension UIColor {
+    static func allStarColor()->[UIColor]{
+        return [UIColor.redColor(),UIColor.blackColor(),UIColor.blueColor(),UIColor.brownColor(),UIColor.whiteColor(),UIColor.orangeColor(),UIColor.purpleColor(),UIColor.grayColor(),UIColor.lightGrayColor(),UIColor.lightTextColor(),UIColor.darkGrayColor(),UIColor.darkTextColor(),UIColor.cyanColor(),UIColor.yellowColor(),UIColor.magentaColor(),UIColor.clearColor()]
+    }
+}

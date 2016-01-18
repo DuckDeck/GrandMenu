@@ -30,7 +30,7 @@ class GrandMenu: UIView,GraneMenuItemDelegate {
         }
     }
     
-    var  averageManu:Bool = false{  //当Menu过多时,设置无效
+    var  averageManu:Bool = true{  //当Menu过多时,设置无效
         didSet{
             if arrItemsTitle!.count <= 5{
                 setupItems()
