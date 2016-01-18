@@ -58,7 +58,7 @@ class GrandMenu: UIView,GraneMenuItemDelegate {
     var itemSeletedColor:UIColor = UIColor.redColor(){
         didSet{
             for item in arrItems!{
-                item.selectedColor = itemColor
+                item.selectedColor = itemSeletedColor
             }
             // Settings.titleSelectedColor.Value = itemColor
         }

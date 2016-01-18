@@ -18,6 +18,7 @@ class ViewController: UIViewController {
         grandMenu?.backgroundColor = UIColor.whiteColor()
         grandMenu?.selectMenu = scrollCallback
         grandMenu?.averageManu = true
+        grandMenu?.itemSeletedColor = UIColor.blueColor()
         view.addSubview(grandMenu!)
         arrControllers = [UIViewController]()
         let vc1 = Controller1()
