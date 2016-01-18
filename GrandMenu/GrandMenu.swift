@@ -33,7 +33,6 @@ class GrandMenu: UIView,GraneMenuItemDelegate {
     var  averageManu:Bool = false{  //当Menu过多时,设置无效
         didSet{
             if arrItemsTitle!.count <= 5{
-                //   Settings.sliderViewLeftRightOffset.Value = Float(20 - arrItemsTitle!.count * 2)
                 setupItems()
             }
         }
@@ -51,7 +50,6 @@ class GrandMenu: UIView,GraneMenuItemDelegate {
             for item in arrItems!{
                 item.color = itemColor
             }
-            // Settings.titleColor.Value = itemColor
         }
     }
     
@@ -60,9 +58,31 @@ class GrandMenu: UIView,GraneMenuItemDelegate {
             for item in arrItems!{
                 item.selectedColor = itemSeletedColor
             }
-            // Settings.titleSelectedColor.Value = itemColor
         }
     }
+    
+    var itemFont:Float?{
+        didSet{
+            if itemFont == nil{
+                return
+            }
+            for item in arrItems!{
+                item.fontSize = itemFont!
+            }
+        }
+    }
+    
+    var itemSelectedFont:Float?{
+        didSet{
+            if itemSelectedFont == nil{
+                return
+            }
+            for item in arrItems!{
+                item.selectedFontSize = itemSelectedFont!
+            }
+        }
+    }
+    
     
     var selectMenu:((item:GrandMenuItem, index:Int)->())?
     
@@ -117,6 +137,14 @@ class GrandMenu: UIView,GraneMenuItemDelegate {
         var x:Float = 0
         for  title in arrItemsTitle! {
             let item = GrandMenuItem()
+            item.selectedColor = itemSeletedColor
+            item.color = itemColor
+            if let f = itemFont{
+                item.fontSize = f
+            }
+            if let sf = itemSelectedFont{
+                item.selectedFontSize = sf
+            }
             item.delegate = self
             var itemWidth = GrandMenuItem.getTitleWidth(title,fontSize: item.fontSize)
             if averageManu{
@@ -135,7 +163,7 @@ class GrandMenu: UIView,GraneMenuItemDelegate {
         selectedItem = defaultItem
         vSlider?.frame = CGRect(x: defaultItem.frame.origin.x + CGFloat(sliderBarLeftRightOffset), y: frame.size.height - CGFloat(sliderBarHeight), width: defaultItem.frame.size.width - CGFloat(sliderBarLeftRightOffset * 2), height: CGFloat(sliderBarHeight))
     }
-
+    
     
     func scrollToVisibleItem(item:GrandMenuItem){
         let selectedItemIndex = arrItems!.find({(s:GrandMenuItem) ->Bool in return s.title! == self.selectedItem!.title!}).1
@@ -169,26 +197,26 @@ class GrandMenu: UIView,GraneMenuItemDelegate {
     func addAnimationWithSelectedItem(item:GrandMenuItem)
     {
         let dx = CGRectGetMidX(item.frame) - CGRectGetMidX(selectedItem!.frame)
-//        let positionAnimation = CABasicAnimation()
-//        positionAnimation.keyPath = "position.x"
-//        positionAnimation.fromValue = vSlider?.layer.position.x
-//        positionAnimation.toValue = vSlider!.layer.position.x + dx
+        //        let positionAnimation = CABasicAnimation()
+        //        positionAnimation.keyPath = "position.x"
+        //        positionAnimation.fromValue = vSlider?.layer.position.x
+        //        positionAnimation.toValue = vSlider!.layer.position.x + dx
         
-//        let boundsAnimation = CABasicAnimation()
-//        boundsAnimation.keyPath = "bounds.size.width"
-//        boundsAnimation.fromValue = CGRectGetWidth(vSlider!.layer.bounds)
-//        boundsAnimation.toValue = CGRectGetWidth(item.frame)
+        //        let boundsAnimation = CABasicAnimation()
+        //        boundsAnimation.keyPath = "bounds.size.width"
+        //        boundsAnimation.fromValue = CGRectGetWidth(vSlider!.layer.bounds)
+        //        boundsAnimation.toValue = CGRectGetWidth(item.frame)
         //这个是不必要的动画
         
-//        let animationGroup = CAAnimationGroup()
-//        animationGroup.animations = [positionAnimation]
-//        animationGroup.duration = 0.2
-//        vSlider?.layer.addAnimation(animationGroup, forKey: "basic")
-//        
-//        vSlider?.layer.position = CGPoint(x: vSlider!.layer.position.x + dx, y: vSlider!.layer.position.y)
-//        var rect = vSlider!.layer.bounds
-//        rect.size.width = CGRectGetWidth(item.frame) - CGFloat(sliderBarLeftRightOffset * 2)
-//        vSlider?.layer.bounds = rect
+        //        let animationGroup = CAAnimationGroup()
+        //        animationGroup.animations = [positionAnimation]
+        //        animationGroup.duration = 0.2
+        //        vSlider?.layer.addAnimation(animationGroup, forKey: "basic")
+        //
+        //        vSlider?.layer.position = CGPoint(x: vSlider!.layer.position.x + dx, y: vSlider!.layer.position.y)
+        //        var rect = vSlider!.layer.bounds
+        //        rect.size.width = CGRectGetWidth(item.frame) - CGFloat(sliderBarLeftRightOffset * 2)
+        //        vSlider?.layer.bounds = rect
         //这个动画有个小Bug,目前不知道怎么修正,它会先把滑块移动到目的地再消失,再执行动画,所以只好用下面的方法了,这种情况有30%的可能性发生
         //不用这种动画试试
         UIView.animateWithDuration(0.2) { () -> Void in
