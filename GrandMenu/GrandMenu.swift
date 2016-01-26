@@ -8,36 +8,36 @@
 
 import UIKit
 
-class GrandMenu: UIView,GraneMenuItemDelegate {
-    var arrItemsTitle:[String]?{
+public class GrandMenu: UIView,GraneMenuItemDelegate {
+   public var arrItemsTitle:[String]?{
         didSet{
             setupItems()
         }
     }
-    var sliderBarLeftRightOffset = 15{
+   public var sliderBarLeftRightOffset = 15{
         didSet{
             setupItems()
         }
     }
-    var sliderBarHeight = 2{
+  public  var sliderBarHeight = 2{
         didSet{
             setupItems()
         }
     }
-    var sliderColor = UIColor.redColor(){
+  public  var sliderColor = UIColor.redColor(){
         didSet{
             vSlider?.backgroundColor = sliderColor
         }
     }
     
-    var  averageManu:Bool = true{  //当Menu过多时,设置无效
+    public var  averageManu:Bool = true{  //当Menu过多时,设置无效
         didSet{
             if arrItemsTitle!.count <= 5{
                 setupItems()
             }
         }
     }
-    var defaultSelectedIndex:Int = 0{
+  public  var defaultSelectedIndex:Int = 0{
         didSet{
             if defaultSelectedIndex < arrItemsTitle!.count{
                 setupItems()
@@ -45,7 +45,7 @@ class GrandMenu: UIView,GraneMenuItemDelegate {
         }
     }
     
-    var itemColor:UIColor = UIColor.blackColor(){
+   public var itemColor:UIColor = UIColor.blackColor(){
         didSet{
             for item in arrItems!{
                 item.color = itemColor
@@ -53,7 +53,7 @@ class GrandMenu: UIView,GraneMenuItemDelegate {
         }
     }
     
-    var itemSeletedColor:UIColor = UIColor.redColor(){
+  public  var itemSeletedColor:UIColor = UIColor.redColor(){
         didSet{
             for item in arrItems!{
                 item.selectedColor = itemSeletedColor
@@ -61,7 +61,7 @@ class GrandMenu: UIView,GraneMenuItemDelegate {
         }
     }
     
-    var itemFont:Float?{
+   public var itemFont:Float?{
         didSet{
             if itemFont == nil{
                 return
@@ -72,7 +72,7 @@ class GrandMenu: UIView,GraneMenuItemDelegate {
         }
     }
     
-    var itemSelectedFont:Float?{
+  public  var itemSelectedFont:Float?{
         didSet{
             if itemSelectedFont == nil{
                 return
@@ -84,7 +84,7 @@ class GrandMenu: UIView,GraneMenuItemDelegate {
     }
     
     
-    var selectMenu:((item:GrandMenuItem, index:Int)->())?
+    public var selectMenu:((item:GrandMenuItem, index:Int)->())?
     
     private var selectedItemIndex:Int = 0
     private var scrollView:UIScrollView?
@@ -95,7 +95,7 @@ class GrandMenu: UIView,GraneMenuItemDelegate {
             selectedItem?.selected = false  //这个警告可以无视
         }
     }
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     private override init(frame: CGRect) {
@@ -111,7 +111,7 @@ class GrandMenu: UIView,GraneMenuItemDelegate {
         vSlider?.backgroundColor = sliderColor
         scrollView!.addSubview(vSlider!)
     }
-    convenience init(frame: CGRect,titles:[String]){
+   public  convenience init(frame: CGRect,titles:[String]){
         self.init(frame:frame)
         if let window = UIApplication.sharedApplication().keyWindow
         {
@@ -127,7 +127,7 @@ class GrandMenu: UIView,GraneMenuItemDelegate {
         }
         arrItemsTitle = titles
     }
-    func setupItems(){
+   func setupItems(){
         for view in scrollView!.subviews{
             if view is GrandMenuItem{
                 view.removeFromSuperview()
@@ -256,7 +256,7 @@ class GrandMenu: UIView,GraneMenuItemDelegate {
         
     }
     
-    func selectSlideBarItemAtIndex(index:Int){
+  public  func selectSlideBarItemAtIndex(index:Int){
         let item = arrItems![index]
         if item == selectedItem!{
             return

@@ -10,7 +10,7 @@ import UIKit
 protocol GraneMenuItemDelegate{
     func GraneMenuItemSelected(item:GrandMenuItem)
 }
-class GrandMenuItem: UIView {
+public class GrandMenuItem: UIView {
     var selected:Bool = false{
         didSet{
             setNeedsDisplay()
@@ -46,7 +46,7 @@ class GrandMenuItem: UIView {
     
     var delegate:GraneMenuItemDelegate?
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -60,7 +60,7 @@ class GrandMenuItem: UIView {
         self.backgroundColor = UIColor.clearColor()
     }
     
-    override func drawRect(rect: CGRect) {
+    override public func drawRect(rect: CGRect) {
         let titleX = (CGRectGetWidth(frame) - titleSize().width) * 0.5
         let titleY = (CGRectGetHeight(frame) - titleSize().height) * 0.5
         let titleRect = CGRect(x: titleX, y: titleY, width: titleSize().width, height: titleSize().height)
@@ -102,12 +102,12 @@ class GrandMenuItem: UIView {
         return Float(size.width)
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         selected = true
         delegate?.GraneMenuItemSelected(self)
     }
     
-    override func isEqual(object: AnyObject?) -> Bool {
+    override public func isEqual(object: AnyObject?) -> Bool {
         if object == nil
         {
             return false
