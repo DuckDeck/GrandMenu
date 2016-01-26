@@ -67,6 +67,12 @@ grandMenuTable?.scrollToIndex = scrollToIndex // set the GrandTable callback
     }
         view.addSubview(grandMenuTable!) //add the GrandTable
 ```
+```swift
+//in the ViewControllers you added, you must add this code.
+    override func viewWillLayoutSubviews() { // in the viewControllers  you need set table frame, and this is very importanr
+        tb?.frame = self.view.bounds
+    }
+```
 *Check the demo project will help you understand more 
 
 <br>
