@@ -47,16 +47,21 @@ public class GrandMenu: UIView,GraneMenuItemDelegate {
     
    public var itemColor:UIColor = UIColor.blackColor(){
         didSet{
-            for item in arrItems!{
-                item.color = itemColor
+            if  let items = arrItems{
+                for item in items{
+                    item.color = itemColor
+                }
             }
+
         }
     }
     
   public  var itemSeletedColor:UIColor = UIColor.redColor(){
         didSet{
-            for item in arrItems!{
-                item.selectedColor = itemSeletedColor
+            if  let items = arrItems{
+                for item in items{
+                   item.selectedColor = itemSeletedColor
+                }
             }
         }
     }
@@ -66,8 +71,10 @@ public class GrandMenu: UIView,GraneMenuItemDelegate {
             if itemFont == nil{
                 return
             }
-            for item in arrItems!{
-                item.fontSize = itemFont!
+            if  let items = arrItems{
+                for item in items{
+                     item.fontSize = itemFont!
+                }
             }
         }
     }
@@ -77,8 +84,10 @@ public class GrandMenu: UIView,GraneMenuItemDelegate {
             if itemSelectedFont == nil{
                 return
             }
-            for item in arrItems!{
-                item.selectedFontSize = itemSelectedFont!
+            if  let items = arrItems{
+                for item in items{
+                    item.selectedFontSize = itemSelectedFont!
+                }
             }
         }
     }
@@ -126,6 +135,7 @@ public class GrandMenu: UIView,GraneMenuItemDelegate {
             }
         }
         arrItemsTitle = titles
+        setupItems()
     }
    func setupItems(){
         for view in scrollView!.subviews{

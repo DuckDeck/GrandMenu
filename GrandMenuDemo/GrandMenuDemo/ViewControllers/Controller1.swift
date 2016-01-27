@@ -21,15 +21,9 @@ class Controller1: UIViewController,UITableViewDataSource {
             arrData?.append("Controller1")
         }
         view.addSubview(tb!)
-        view.addObserver(self, forKeyPath: "frame", options: [NSKeyValueObservingOptions.New,NSKeyValueObservingOptions.Old], context: nil)
     }
     override func viewWillLayoutSubviews() {
         tb?.frame = self.view.bounds
-    }
-    
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        print("keyPath:\(keyPath!)")
-        print(change)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
