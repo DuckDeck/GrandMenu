@@ -8,7 +8,7 @@ StarReview is a simple and useful menu tool. It has a rotated table and a scroll
 ##Key Features
 * Custom menu title and bar color
 * Can assgin menu title's location and size automatically
-* Auto adjust the table view.s size.
+* Auto adjust the table view's size.
 * use block to callback menu click event and table scroll event
 
 ##Requirements 
@@ -17,6 +17,7 @@ Xcode 7.1 and iOS 8.0(the lasted swift grammar)
 
 ##Installation
 `if you want to use cocopods, just pod 'GrandMenu'.`
+<br>
 `if you want to use file, just pod copy the GrandMenu.swift to your project .`
 <br>
 
@@ -43,35 +44,35 @@ grandMenu?.selectMenu = scrollCallback //set the select menu callback
         grandMenuTable?.selectIndex(index)
     } //this is the callback func
 ```
-```
+``` 
 view.addSubview(grandMenu!) // then add the menu
 ```
-```
-        arrControllers = [UIViewController]() //init the viewControllers array
-        let vc1 = Controller1()
-        let vc2 = Controller2()
-        let vc3 = Controller3()
-        let vc4 = Controller4()
-        let vc5 = Controller5()
-        arrControllers?.append(vc1)
-        arrControllers?.append(vc2)
-        arrControllers?.append(vc3)
-        arrControllers?.append(vc4)
-        arrControllers?.append(vc5) //add the viewcontrollers you want
+```   
+ arrControllers = [UIViewController]() //init the viewControllers array
+ let vc1 = Controller1()
+ let vc2 = Controller2()
+ let vc3 = Controller3()
+ let vc4 = Controller4()
+ let vc5 = Controller5()
+ arrControllers?.append(vc1)
+ arrControllers?.append(vc2)
+ arrControllers?.append(vc3)
+ arrControllers?.append(vc4)
+ arrControllers?.append(vc5) //add the viewcontrollers you want
 ```
 ```
 grandMenuTable = GrandMenuTable(frame: CGRect(x: 0, y: 104, width: UIScreen.mainScreen().bounds.size.width, height: view.frame.size.height - 104), arrContent: arrControllers!) //use the arrControllers to init the GrandTable
 grandMenuTable?.scrollToIndex = scrollToIndex // set the GrandTable callback
-    func scrollToIndex(index:Int){
-        grandMenu?.selectSlideBarItemAtIndex(index)// GrandTable callback, in this func , you need set the GrandMenu selected bar index
-    }
+func scrollToIndex(index:Int){
+ grandMenu?.selectSlideBarItemAtIndex(index)// GrandTable callback, in this func , you need set the GrandMenu selected bar index
+}
         view.addSubview(grandMenuTable!) //add the GrandTable
 ```
 ```swift
 //in the ViewControllers you added, you must add this code.
-    override func viewWillLayoutSubviews() { // in the viewControllers  you need set table frame, and this is very importanr
-        tb?.frame = self.view.bounds
-    }
+ override func viewWillLayoutSubviews() { // in the viewControllers  you need set table frame, and this is very important
+    tb?.frame = self.view.bounds
+ }
 ```
 *Check the demo project will help you understand more 
 
