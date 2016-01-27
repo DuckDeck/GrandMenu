@@ -20,6 +20,8 @@
 		A205AA921C4893020043F5F6 /* Controller4.swift in Sources */ = {isa = PBXBuildFile; fileRef = A205AA8D1C4893020043F5F6 /* Controller4.swift */; };
 		A205AA931C4893020043F5F6 /* Controller5.swift in Sources */ = {isa = PBXBuildFile; fileRef = A205AA8E1C4893020043F5F6 /* Controller5.swift */; };
 		A2223E2D1C584F7E00302C19 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = A2223E2C1C584F7E00302C19 /* 1.png */; };
+		A2223E2F1C5851D600302C19 /* 2.gif in Resources */ = {isa = PBXBuildFile; fileRef = A2223E2E1C5851D600302C19 /* 2.gif */; };
+		A2223E311C5851D900302C19 /* 3.gif in Resources */ = {isa = PBXBuildFile; fileRef = A2223E301C5851D900302C19 /* 3.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		A205AA8D1C4893020043F5F6 /* Controller4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controller4.swift; sourceTree = "<group>"; };
 		A205AA8E1C4893020043F5F6 /* Controller5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controller5.swift; sourceTree = "<group>"; };
 		A2223E2C1C584F7E00302C19 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		A2223E2E1C5851D600302C19 /* 2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 2.gif; sourceTree = "<group>"; };
+		A2223E301C5851D900302C19 /* 3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 3.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +112,8 @@
 		A2223E2B1C584F5200302C19 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				A2223E301C5851D900302C19 /* 3.gif */,
+				A2223E2E1C5851D600302C19 /* 2.gif */,
 				A2223E2C1C584F7E00302C19 /* 1.png */,
 			);
 			path = Resource;
@@ -174,6 +180,8 @@
 				A2223E2D1C584F7E00302C19 /* 1.png in Resources */,
 				A205AA7B1C488E890043F5F6 /* LaunchScreen.storyboard in Resources */,
 				A205AA781C488E890043F5F6 /* Assets.xcassets in Resources */,
+				A2223E2F1C5851D600302C19 /* 2.gif in Resources */,
+				A2223E311C5851D900302C19 /* 3.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
