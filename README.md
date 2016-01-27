@@ -3,7 +3,7 @@
 #####下面有中文说明
 ##GrandMenu is a powerful and simple Menu
 
-StarReview is a simple and useful menu tool. It has a rotated table and a scrollable menu
+StarReview is a simple and useful menu tool. It provide GrandTableMenu which is a rotated table to supporting GrandMenu. it achieve neteasy news effects(now completed, but liked)
 
 ##Key Features
 * Custom menu title and bar color
@@ -84,7 +84,7 @@ func scrollToIndex(index:Int){
 ![add -DDEBUG location](https://raw.githubusercontent.com/DuckDeck/GrandMenu/master/GrandMenuDemo/GrandMenuDemo/Resource/2.gif)
 <br>
 
-![add -DDEBUG location](https://raw.githubusercontent.com/DuckDeck/GrandMenu/master/GrandMenuDemo/GrandMenuDemo/Resource/3.fig)
+![add -DDEBUG location](https://raw.githubusercontent.com/DuckDeck/GrandMenu/master/GrandMenuDemo/GrandMenuDemo/Resource/3.gif)
 
 
 ##Contact 
@@ -182,7 +182,7 @@ func scrollToIndex(index:Int){
 ![add -DDEBUG location](https://raw.githubusercontent.com/DuckDeck/GrandMenu/master/GrandMenuDemo/GrandMenuDemo/Resource/2.gif)
 <br>
 
-![add -DDEBUG location](https://raw.githubusercontent.com/DuckDeck/GrandMenu/master/GrandMenuDemo/GrandMenuDemo/Resource/3.fig)
+![add -DDEBUG location](https://raw.githubusercontent.com/DuckDeck/GrandMenu/master/GrandMenuDemo/GrandMenuDemo/Resource/3.gif)
 
 
 ##和我联系
