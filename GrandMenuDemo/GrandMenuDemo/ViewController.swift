@@ -30,6 +30,8 @@ class ViewController: UIViewController {
         grandMenu?.sliderBarLeftRightOffset = 15
         grandMenu?.itemSelectedFont = 16
         view.addSubview(grandMenu!)
+      //  grandMenu?.addBottomLine(UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 0.6), height: 5)
+        grandMenu?.addBottomLine(UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 0.6), size: CGSize(width: 200, height: 1))
         arrControllers = [UIViewController]()
         let vc1 = Controller1()
         let vc2 = Controller2()
@@ -41,7 +43,7 @@ class ViewController: UIViewController {
         arrControllers?.append(vc3)
         arrControllers?.append(vc4)
         arrControllers?.append(vc5)
-        grandMenuTable = GrandMenuTable(frame: CGRect(x: 0, y: 104, width: UIScreen.mainScreen().bounds.size.width, height: view.frame.size.height - 104), arrContent: arrControllers!)
+        grandMenuTable = GrandMenuTable(frame: CGRect(x: 0, y: CGRectGetMaxY(grandMenu!.frame), width: UIScreen.mainScreen().bounds.size.width, height: view.frame.size.height - 104), arrContent: arrControllers!)
         grandMenuTable?.scrollToIndex = scrollToIndex
         view.addSubview(grandMenuTable!)
     }

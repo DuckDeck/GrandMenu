@@ -99,6 +99,7 @@ public class GrandMenu: UIView,GraneMenuItemDelegate {
     private var scrollView:UIScrollView?
     private var arrItems:[GrandMenuItem]?
     private var vSlider:UIView?
+    private var vBottomLine:UIView?
     private var selectedItem:GrandMenuItem?{
         willSet{
             selectedItem?.selected = false  //这个警告可以无视
@@ -137,10 +138,11 @@ public class GrandMenu: UIView,GraneMenuItemDelegate {
         arrItemsTitle = titles
         setupItems()
     }
-    public func addBottomLine(bgColor:UIColor,height:Float){
-        let line = UIView(frame: CGRect(x: CGFloat(0), y: CGRectGetMaxY(self.frame), width: UIScreen.mainScreen().bounds.width, height: CGFloat(height)))
-        line.backgroundColor = bgColor
-        self.superview?.addSubview(line)
+    public func addBottomLine(bgColor:UIColor,size:CGSize){
+        vBottomLine = UIView(frame: CGRect(x: (self.frame.size.width - size.width) / 2, y: self.frame.size.height, width: size.width, height: size.height))
+        vBottomLine?.backgroundColor = bgColor
+        addSubview(vBottomLine!)
+        self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.size.width, height: CGRectGetMaxY(vBottomLine!.frame))
     }
 
    func setupItems(){
