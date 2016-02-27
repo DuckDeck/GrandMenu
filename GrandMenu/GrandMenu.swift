@@ -137,6 +137,12 @@ public class GrandMenu: UIView,GraneMenuItemDelegate {
         arrItemsTitle = titles
         setupItems()
     }
+    public func addBottomLine(bgColor:UIColor,height:Float){
+        let line = UIView(frame: CGRect(x: CGFloat(0), y: CGRectGetMaxY(self.frame), width: UIScreen.mainScreen().bounds.width, height: CGFloat(height)))
+        line.backgroundColor = bgColor
+        self.superview?.addSubview(line)
+    }
+
    func setupItems(){
         for view in scrollView!.subviews{
             if view is GrandMenuItem{
