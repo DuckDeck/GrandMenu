@@ -86,6 +86,8 @@ func scrollToIndex(index:Int){
 
 ![add -DDEBUG location](https://raw.githubusercontent.com/DuckDeck/GrandMenu/master/GrandMenuDemo/GrandMenuDemo/Resource/3.gif)
 
+0.0.3 version add a new feature:
+you can add a line under the GrandMenu,
 
 ##Contact 
 Any issue or problem please contact me:3421902@qq.com, I will be happy fix it
@@ -184,6 +186,8 @@ func scrollToIndex(index:Int){
 
 ![add -DDEBUG location](https://raw.githubusercontent.com/DuckDeck/GrandMenu/master/GrandMenuDemo/GrandMenuDemo/Resource/3.gif)
 
+0.0.3 版本加了个新功能:
+你可以地GrandMenu下面加一条线,
 
 ##和我联系
 任何问题或者BUG请直接和我联系3421902@qq.com, 我会乐于帮你解决
