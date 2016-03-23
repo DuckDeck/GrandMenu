@@ -16,9 +16,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "GrandMenuDemo"
-        let btn = UIBarButtonItem(title: "换色", style: .Plain, target: self, action: "changeColor")
+        let btn = UIBarButtonItem(title: "换色", style: .Plain, target: self, action: #selector(ViewController.changeColor))
         navigationItem.rightBarButtonItem = btn
-        let btn2 = UIBarButtonItem(title: "字大小", style: .Plain, target: self, action: "changeFont")
+        let btn2 = UIBarButtonItem(title: "字大小", style: .Plain, target: self, action: #selector(ViewController.changeFont))
         navigationItem.rightBarButtonItems?.append(btn2)
         grandMenu = GrandMenu(frame:CGRect(x: 0, y: 64, width: UIScreen.mainScreen().bounds.size.width, height: 40) , titles:  ["First","Second","Third","Fouth","Fifth"])
         grandMenu?.backgroundColor = UIColor.whiteColor()

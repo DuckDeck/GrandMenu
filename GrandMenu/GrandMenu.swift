@@ -294,7 +294,7 @@ extension Array{
             if method(item){
                 return (item,index)
             }
-            index++
+            index += 1
         }
         return (nil,-1)
     }
