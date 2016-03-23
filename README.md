@@ -86,6 +86,9 @@ func scrollToIndex(index:Int){
 
 ![add -DDEBUG location](https://raw.githubusercontent.com/DuckDeck/GrandMenu/master/GrandMenuDemo/GrandMenuDemo/Resource/3.gif)
 
+0.0.4
+Update Swift 2.2 compatible
+
 0.0.3 version add a new feature:
 you can add a line under the GrandMenu,
 
@@ -185,7 +188,8 @@ func scrollToIndex(index:Int){
 <br>
 
 ![add -DDEBUG location](https://raw.githubusercontent.com/DuckDeck/GrandMenu/master/GrandMenuDemo/GrandMenuDemo/Resource/3.gif)
-
+0.0.4
+升级为Swift2.2版本
 0.0.3 版本加了个新功能:
 你可以地GrandMenu下面加一条线,
 
