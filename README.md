@@ -13,7 +13,7 @@ StarReview is a simple and useful menu tool. It provide GrandTableMenu which is 
 
 ##Requirements 
 
-Xcode 7.1 and iOS 8.0(the lasted swift grammar)
+Xcode 7.2 and iOS 8.0(Swift2.2 Version)
 
 ##Installation
 `if you want to use cocopods, just pod 'GrandMenu'.`
@@ -116,7 +116,7 @@ GrandMenu是一个简单且使用方便的菜单工具, 并且提供了一个Gra
 
 ##系统要求 
 
-Xcode 7.1 and iOS 8.0(最新的Swift语法)
+Xcode 7.2 and iOS 8.0(Swift2.2 版本)
 
 ##安装
 `如果你使用cocopods, 则pod 'GrandMenu' 再安装即可.`
