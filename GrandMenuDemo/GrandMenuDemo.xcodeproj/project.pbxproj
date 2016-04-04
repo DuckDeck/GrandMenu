@@ -22,6 +22,8 @@
 		A2223E2D1C584F7E00302C19 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = A2223E2C1C584F7E00302C19 /* 1.png */; };
 		A2223E2F1C5851D600302C19 /* 2.gif in Resources */ = {isa = PBXBuildFile; fileRef = A2223E2E1C5851D600302C19 /* 2.gif */; };
 		A2223E311C5851D900302C19 /* 3.gif in Resources */ = {isa = PBXBuildFile; fileRef = A2223E301C5851D900302C19 /* 3.gif */; };
+		AE7B84831CB258A200F375AD /* ViewControllerDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7B84821CB258A200F375AD /* ViewControllerDemoViewController.swift */; };
+		AE7B84851CB258AB00F375AD /* ViewDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7B84841CB258AB00F375AD /* ViewDemoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		A2223E2C1C584F7E00302C19 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		A2223E2E1C5851D600302C19 /* 2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 2.gif; sourceTree = "<group>"; };
 		A2223E301C5851D900302C19 /* 3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 3.gif; sourceTree = "<group>"; };
+		AE7B84821CB258A200F375AD /* ViewControllerDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerDemoViewController.swift; sourceTree = "<group>"; };
+		AE7B84841CB258AB00F375AD /* ViewDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewDemoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +86,8 @@
 				A205AA771C488E890043F5F6 /* Assets.xcassets */,
 				A205AA791C488E890043F5F6 /* LaunchScreen.storyboard */,
 				A205AA7C1C488E890043F5F6 /* Info.plist */,
+				AE7B84821CB258A200F375AD /* ViewControllerDemoViewController.swift */,
+				AE7B84841CB258AB00F375AD /* ViewDemoViewController.swift */,
 			);
 			path = GrandMenuDemo;
 			sourceTree = "<group>";
@@ -198,7 +204,9 @@
 				A205AA931C4893020043F5F6 /* Controller5.swift in Sources */,
 				A205AA921C4893020043F5F6 /* Controller4.swift in Sources */,
 				A205AA911C4893020043F5F6 /* Controller3.swift in Sources */,
+				AE7B84851CB258AB00F375AD /* ViewDemoViewController.swift in Sources */,
 				A205AA8F1C4893020043F5F6 /* Controller1.swift in Sources */,
+				AE7B84831CB258A200F375AD /* ViewControllerDemoViewController.swift in Sources */,
 				A205AA901C4893020043F5F6 /* Controller2.swift in Sources */,
 				A205AA861C488F8D0043F5F6 /* GrandMenuItem.swift in Sources */,
 				A205AA711C488E880043F5F6 /* AppDelegate.swift in Sources */,

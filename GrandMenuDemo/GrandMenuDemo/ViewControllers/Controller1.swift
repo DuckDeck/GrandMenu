@@ -40,8 +40,5 @@ class Controller1: UIViewController,UITableViewDataSource {
         return cell!
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        view.removeObserver(self, forKeyPath: "frame")
-    }
+
 }
