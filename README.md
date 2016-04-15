@@ -4,24 +4,24 @@
 
 StarReview is a simple and useful menu tool. It provide GrandTableMenu which is a rotated table to supporting GrandMenu. it achieve neteasy news effects(now completed, but liked)**GrandMenu是一个简单且使用方便的菜单工具, 并且提供了一个GrandTableMenu来配套使用,两者配合可以实现类似部分网易新闻的效果**
 
-##Key Features
+##Key Features 【关键特点】
 * Custom menu title and bar color**菜单标题和颜色,字体,以及下面的Bar可以完全自定义**
 * Can assgin menu title's location and size automatically**菜单标题和Bar的大小和位置完全是自动分配的**
 * Auto adjust the table view's size.**可以自动调整表格的大小**
 * use block to callback menu click event and table scroll event**使用Block来回调菜单的点击事件和Table的滚动事件**
 
-##Requirements 
+##Requirements 【安装需求】
 
 Xcode 7.2 and iOS 8.0(Swift2.2 Version)
 
-##Installation
+##Installation 【安装】
 + if you want to use cocopods, just pod 'GrandMenu'.**如果你想使用Cocoapods，直接pod 'GrandMenu'，再安装即可**
 
 + if you want to use file, just pod copy the GrandMenu.swift，GrandMenuItem.swift and GrandMenuTable.swiftto your project .**如果你想使用文件，直接把GrandMenu.swift，GrandMenuItem.swift和GrandMenuTable.swift拷贝到项目即可**
 
 
 
-##How To Use It 
+##How To Use It 【如何使用】
 Please see these code below**请参考下面的代码**
 ```swift
 grandMenu = GrandMenu(frame:CGRect(x: 0, y: 64, width: UIScreen.mainScreen().bounds.size.width, height: 40) , titles:  ["First","Second","Third","Fouth","Fifth"]) //init the GrandMenu and assign the menu titles, and also you can assign titles later
@@ -87,7 +87,7 @@ Check the Demo project will help you understand more
 
 
 
-##Contact 
+##Contact 【联系】
 Any issue or problem please contact me:3421902@qq.com, I will be happy fix it
 **任何问题箐联系我：3421902@qq.com,我会很乐意解决**
 
