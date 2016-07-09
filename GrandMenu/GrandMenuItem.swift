@@ -7,7 +7,7 @@
 //
 
 import UIKit
-protocol GraneMenuItemDelegate{
+protocol GraneMenuItemDelegate:NSObjectProtocol{
     func GraneMenuItemSelected(item:GrandMenuItem)
 }
 public class GrandMenuItem: UIView {
@@ -44,7 +44,7 @@ public class GrandMenuItem: UIView {
         }
     }
     
-    var delegate:GraneMenuItemDelegate?
+   weak var delegate:GraneMenuItemDelegate?
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

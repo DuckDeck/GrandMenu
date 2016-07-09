@@ -97,9 +97,10 @@ public class GrandMenuTable: UIView,UITableViewDataSource,UITableViewDelegate {
     }
     
    public  func selectIndex(index:Int){
-        UIView.animateWithDuration(0.3) { () -> Void in
-            self.tb?.scrollToRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0), atScrollPosition: .None, animated: false)
-        }
+    weak var weakSelf = self
+    UIView.animateWithDuration(0.3) { () -> Void in
+        weakSelf?.tb?.scrollToRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0), atScrollPosition: .None, animated: true)
     }
+}
 
 }

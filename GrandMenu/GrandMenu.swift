@@ -9,22 +9,22 @@
 import UIKit
 
 public class GrandMenu: UIView,GraneMenuItemDelegate {
-   public var arrItemsTitle:[String]?{
+    public var arrItemsTitle:[String]?{
         didSet{
             setupItems()
         }
     }
-   public var sliderBarLeftRightOffset = 15{
+    public var sliderBarLeftRightOffset = 15{
         didSet{
             setupItems()
         }
     }
-  public  var sliderBarHeight = 2{
+    public  var sliderBarHeight = 2{
         didSet{
             setupItems()
         }
     }
-  public  var sliderColor = UIColor.redColor(){
+    public  var sliderColor = UIColor.redColor(){
         didSet{
             vSlider?.backgroundColor = sliderColor
         }
@@ -37,7 +37,7 @@ public class GrandMenu: UIView,GraneMenuItemDelegate {
             }
         }
     }
-  public  var defaultSelectedIndex:Int = 0{
+    public  var defaultSelectedIndex:Int = 0{
         didSet{
             if defaultSelectedIndex < arrItemsTitle!.count{
                 setupItems()
@@ -45,41 +45,41 @@ public class GrandMenu: UIView,GraneMenuItemDelegate {
         }
     }
     
-   public var itemColor:UIColor = UIColor.blackColor(){
+    public var itemColor:UIColor = UIColor.blackColor(){
         didSet{
             if  let items = arrItems{
                 for item in items{
                     item.color = itemColor
                 }
             }
-
+            
         }
     }
     
-  public  var itemSeletedColor:UIColor = UIColor.redColor(){
+    public  var itemSeletedColor:UIColor = UIColor.redColor(){
         didSet{
             if  let items = arrItems{
                 for item in items{
-                   item.selectedColor = itemSeletedColor
+                    item.selectedColor = itemSeletedColor
                 }
             }
         }
     }
     
-   public var itemFont:Float?{
+    public var itemFont:Float?{
         didSet{
             if itemFont == nil{
                 return
             }
             if  let items = arrItems{
                 for item in items{
-                     item.fontSize = itemFont!
+                    item.fontSize = itemFont!
                 }
             }
         }
     }
     
-  public  var itemSelectedFont:Float?{
+    public  var itemSelectedFont:Float?{
         didSet{
             if itemSelectedFont == nil{
                 return
@@ -111,7 +111,7 @@ public class GrandMenu: UIView,GraneMenuItemDelegate {
     private override init(frame: CGRect) {
         super.init(frame: frame)
         arrItems = [GrandMenuItem]()
-        scrollView = UIScrollView(frame: self.bounds)
+        scrollView = UIScrollView(frame: bounds)
         scrollView!.backgroundColor = UIColor.clearColor()
         scrollView!.showsHorizontalScrollIndicator = false
         scrollView!.showsVerticalScrollIndicator = false
@@ -121,7 +121,7 @@ public class GrandMenu: UIView,GraneMenuItemDelegate {
         vSlider?.backgroundColor = sliderColor
         scrollView!.addSubview(vSlider!)
     }
-   public  convenience init(frame: CGRect,titles:[String]){
+    public  convenience init(frame: CGRect,titles:[String]){
         self.init(frame:frame)
         if let window = UIApplication.sharedApplication().keyWindow
         {
@@ -139,13 +139,14 @@ public class GrandMenu: UIView,GraneMenuItemDelegate {
         setupItems()
     }
     public func addBottomLine(bgColor:UIColor,size:CGSize){
-        vBottomLine = UIView(frame: CGRect(x: (self.frame.size.width - size.width) / 2, y: self.frame.size.height, width: size.width, height: size.height))
+        vBottomLine = UIView(frame: CGRect(x: (frame.size.width - size.width) / 2, y: frame.size.height, width: size.width, height: size.height))
         vBottomLine?.backgroundColor = bgColor
         addSubview(vBottomLine!)
-        self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.size.width, height: CGRectGetMaxY(vBottomLine!.frame))
+        frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.size.width, height: CGRectGetMaxY(vBottomLine!.frame))
     }
-
-   func setupItems(){
+    
+    func setupItems(){
+        weak var weakSelf = self
         for view in scrollView!.subviews{
             if view is GrandMenuItem{
                 view.removeFromSuperview()
@@ -163,7 +164,7 @@ public class GrandMenu: UIView,GraneMenuItemDelegate {
             if let sf = itemSelectedFont{
                 item.selectedFontSize = sf
             }
-            item.delegate = self
+            item.delegate = weakSelf
             var itemWidth = GrandMenuItem.getTitleWidth(title,fontSize: item.fontSize)
             if averageManu{
                 itemWidth = Float(UIScreen.mainScreen().bounds.width / CGFloat(arrItemsTitle!.count))
@@ -184,7 +185,8 @@ public class GrandMenu: UIView,GraneMenuItemDelegate {
     
     
     func scrollToVisibleItem(item:GrandMenuItem){
-        let selectedItemIndex = arrItems!.find({(s:GrandMenuItem) ->Bool in return s.title! == self.selectedItem!.title!}).1
+        weak var weakSelf = self
+        let selectedItemIndex = arrItems!.find({(s:GrandMenuItem) ->Bool in return s.title! == weakSelf?.selectedItem!.title!}).1
         let visibleItemIndex = arrItems!.find({(s:GrandMenuItem) ->Bool in return s.title! == item.title!}).1
         if selectedItemIndex == visibleItemIndex{
             return
@@ -237,12 +239,13 @@ public class GrandMenu: UIView,GraneMenuItemDelegate {
         //        vSlider?.layer.bounds = rect
         //这个动画有个小Bug,目前不知道怎么修正,它会先把滑块移动到目的地再消失,再执行动画,所以只好用下面的方法了,这种情况有30%的可能性发生
         //不用这种动画试试
+        weak var weakSelf = self
         UIView.animateWithDuration(0.2) { () -> Void in
-            self.vSlider?.frame = CGRect(x: self.vSlider!.frame.origin.x + dx, y: self.vSlider!.frame.origin.y, width: self.vSlider!.frame.size.width, height: self.vSlider!.frame.size.height)
+            weakSelf?.vSlider?.frame = CGRect(x: weakSelf!.vSlider!.frame.origin.x + dx, y:weakSelf!.vSlider!.frame.origin.y, width: weakSelf!.vSlider!.frame.size.width, height: weakSelf!.vSlider!.frame.size.height)
         }
     }
     
-    func adjustScrollOffset(){
+    public func adjustScrollOffset(){
         let x = selectedItem!.frame.origin.x
         //        if x < selectedItem!.frame.size.width * 2 || x > scrollView!.contentSize.width - 2 * selectedItem!.frame.size.width {
         //            return
@@ -274,7 +277,7 @@ public class GrandMenu: UIView,GraneMenuItemDelegate {
         
     }
     
-  public  func selectSlideBarItemAtIndex(index:Int){
+    public  func selectSlideBarItemAtIndex(index:Int){
         let item = arrItems![index]
         if item == selectedItem!{
             return
@@ -302,17 +305,17 @@ extension Array{
     mutating func remove(method:(Element)->Bool)->(Element?,Bool){
         let result = find(method)
         if result.1 >= 0{
-            return (self.removeAtIndex(result.1),true)
+            return (removeAtIndex(result.1),true)
         }
         return (nil,false)
     }
     
     func compareFirstObject(arrTarget:Array, method:(Element,Element)->Bool)->Bool{
-        if self.count == 0 || arrTarget.count == 0
+        if count == 0 || arrTarget.count == 0
         {
             return false
         }
-        let firstItem = self.first!
+        let firstItem = first!
         let targetFirstItem = arrTarget.first!
         if method(firstItem,targetFirstItem)
         {
@@ -322,11 +325,11 @@ extension Array{
     }
     
     func compareLastObject(arrTarget:Array, method:(Element,Element)->Bool)->Bool{
-        if self.count == 0 || arrTarget.count == 0
+        if count == 0 || arrTarget.count == 0
         {
             return false
         }
-        let firstItem = self.last!
+        let firstItem = last!
         let targetFirstItem = arrTarget.last!
         if method(firstItem,targetFirstItem)
         {
@@ -337,30 +340,30 @@ extension Array{
     
     mutating func exchangeObjectAdIndex(IndexA:Int,atIndexB:Int)
     {
-        if IndexA >= self.count || IndexA < 0{
+        if IndexA >= count || IndexA < 0{
             return
         }
-        if atIndexB >= self.count || atIndexB < 0{
+        if atIndexB >= count || atIndexB < 0{
             return
         }
         let objA = self[IndexA]
         let objB = self[atIndexB]
-        self.replaceObject(objA, atIndex: atIndexB)
-        self.replaceObject(objB, atIndex: IndexA)
+        replaceObject(objA, atIndex: atIndexB)
+        replaceObject(objB, atIndex: IndexA)
     }
     
     mutating func replaceObject(obj:Element,atIndex:Int){
-        if atIndex >= self.count || atIndex < 0{
+        if atIndex >= count || atIndex < 0{
             return
         }
-        self.removeAtIndex(atIndex)
-        self.insert(obj, atIndex: atIndex)
+        removeAtIndex(atIndex)
+        insert(obj, atIndex: atIndex)
     }
     
     mutating func merge(newArray:Array){
         for obj in newArray
         {
-            self.append(obj)
+            append(obj)
         }
     }
 }
