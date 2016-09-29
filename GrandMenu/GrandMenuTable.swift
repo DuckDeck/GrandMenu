@@ -8,24 +8,24 @@
 
 import UIKit
 
-public class GrandMenuTable: UIView,UITableViewDataSource,UITableViewDelegate {
-   public  var tb:UITableView?
-   private var arrViewControllers:[UIViewController]?
-   private var arrViews:[UIView]?
-   public var scrollToIndex:((index:Int)->Void)?
-    private override init(frame: CGRect) {
+open class GrandMenuTable: UIView,UITableViewDataSource,UITableViewDelegate {
+   open  var tb:UITableView?
+   fileprivate var arrViewControllers:[UIViewController]?
+   fileprivate var arrViews:[UIView]?
+   open var scrollToIndex:((_ index:Int)->Void)?
+    fileprivate override init(frame: CGRect) {
         super.init(frame: frame)
     }
   public  convenience init(frame:CGRect,arrViewControllers:[UIViewController]){
         self.init(frame:frame)
         self.arrViewControllers = arrViewControllers
         tb = UITableView()
-        tb?.transform = CGAffineTransformMakeRotation(CGFloat(-M_PI_2))
+        tb?.transform = CGAffineTransform(rotationAngle: CGFloat(-M_PI_2))
         tb?.frame = self.bounds
         tb?.bounces = false
         tb?.scrollsToTop = true
-        tb?.pagingEnabled = true
-        tb?.separatorStyle = .None
+        tb?.isPagingEnabled = true
+        tb?.separatorStyle = .none
         tb?.showsVerticalScrollIndicator = false
         tb?.delegate = self
         tb?.dataSource = self
@@ -36,12 +36,12 @@ public class GrandMenuTable: UIView,UITableViewDataSource,UITableViewDelegate {
         self.init(frame:frame)
         self.arrViews = arrViews
         tb = UITableView()
-        tb?.transform = CGAffineTransformMakeRotation(CGFloat(-M_PI_2))
+        tb?.transform = CGAffineTransform(rotationAngle: CGFloat(-M_PI_2))
         tb?.frame = self.bounds
         tb?.bounces = false
         tb?.scrollsToTop = true
-        tb?.pagingEnabled = true
-        tb?.separatorStyle = .None
+        tb?.isPagingEnabled = true
+        tb?.separatorStyle = .none
         tb?.showsVerticalScrollIndicator = false
         tb?.delegate = self
         tb?.dataSource = self
@@ -53,7 +53,7 @@ public class GrandMenuTable: UIView,UITableViewDataSource,UITableViewDelegate {
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if arrViews != nil && arrViewControllers != nil {
             assert(true, "You can not set the ViewControllers and VIews")
         }
@@ -65,42 +65,42 @@ public class GrandMenuTable: UIView,UITableViewDataSource,UITableViewDelegate {
         }
         return 0
     }
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("GrandCell")
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: "GrandCell")
         if cell == nil{
-            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "GrandCell")
-            cell?.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_2))
-            cell?.selectionStyle = .None
-            cell?.contentView.backgroundColor = UIColor.clearColor()
+            cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "GrandCell")
+            cell?.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2))
+            cell?.selectionStyle = .none
+            cell?.contentView.backgroundColor = UIColor.clear
         }
         if arrViewControllers != nil{
-            let v = arrViewControllers![indexPath.row]
+            let v = arrViewControllers![(indexPath as NSIndexPath).row]
             v.view.frame = cell!.bounds
             cell?.contentView.addSubview(v.view)
         }
         else if arrViews != nil{
-            let v = arrViews![indexPath.row]
+            let v = arrViews![(indexPath as NSIndexPath).row]
             cell?.contentView.addSubview(v)
         }
         return cell!
     }
     
-    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return self.frame.size.width
     }
     
-    public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+    open func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let index = scrollView.contentOffset.y / self.frame.size.width
         if let sc = scrollToIndex{
-            sc(index: Int(index))
+            sc(Int(index))
         }
     }
     
-   public  func selectIndex(index:Int){
+   open  func selectIndex(_ index:Int){
     weak var weakSelf = self
-    UIView.animateWithDuration(0.3) { () -> Void in
-        weakSelf?.tb?.scrollToRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0), atScrollPosition: .None, animated: true)
-    }
+    UIView.animate(withDuration: 0.3, animations: { () -> Void in
+        weakSelf?.tb?.scrollToRow(at: IndexPath(row: index, section: 0), at: .none, animated: true)
+    }) 
 }
 
 }

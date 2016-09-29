@@ -17,14 +17,14 @@ class ViewControllerDemoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "GrandMenuDemo"
-        let btn = UIBarButtonItem(title: "换色", style: .Plain, target: self, action: #selector(ViewControllerDemoViewController.changeColor))
+        let btn = UIBarButtonItem(title: "换色", style: .plain, target: self, action: #selector(ViewControllerDemoViewController.changeColor))
         navigationItem.rightBarButtonItem = btn
-        let btn2 = UIBarButtonItem(title: "字大小", style: .Plain, target: self, action: #selector(ViewControllerDemoViewController.changeFont))
+        let btn2 = UIBarButtonItem(title: "字大小", style: .plain, target: self, action: #selector(ViewControllerDemoViewController.changeFont))
         navigationItem.rightBarButtonItems?.append(btn2)
-        grandMenu = GrandMenu(frame:CGRect(x: 0, y: 64, width: UIScreen.mainScreen().bounds.size.width, height: 40) , titles:  ["First","Second","Third","Fouth","Fifth"])
-        grandMenu?.backgroundColor = UIColor.whiteColor()
+        grandMenu = GrandMenu(frame:CGRect(x: 0, y: 64, width: UIScreen.main.bounds.size.width, height: 40) , titles:  ["First","Second","Third","Fouth","Fifth"])
+        grandMenu?.backgroundColor = UIColor.white
         grandMenu?.selectMenu = scrollCallback
-        grandMenu?.itemColor = UIColor.greenColor()
+        grandMenu?.itemColor = UIColor.green
         grandMenu?.itemFont = 14
         grandMenu?.itemSelectedFont = 18
         grandMenu?.sliderBarHeight = 5
@@ -44,7 +44,7 @@ class ViewControllerDemoViewController: UIViewController {
         arrControllers?.append(vc3)
         arrControllers?.append(vc4)
         arrControllers?.append(vc5)
-        grandMenuTable = GrandMenuTable(frame: CGRect(x: 0, y: CGRectGetMaxY(grandMenu!.frame), width: UIScreen.mainScreen().bounds.size.width, height: view.frame.size.height - 104), arrViewControllers: arrControllers!)
+        grandMenuTable = GrandMenuTable(frame: CGRect(x: 0, y: grandMenu!.frame.maxY, width: UIScreen.main.bounds.size.width, height: view.frame.size.height - 104), arrViewControllers: arrControllers!)
         grandMenuTable?.scrollToIndex = scrollToIndex
         view.addSubview(grandMenuTable!)
     }
@@ -53,12 +53,12 @@ class ViewControllerDemoViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    func scrollToIndex(index:Int){
+    func scrollToIndex(_ index:Int){
         grandMenu?.selectSlideBarItemAtIndex(index)
     }
     
     
-    func scrollCallback(item:GrandMenuItem, index:Int){
+    func scrollCallback(_ item:GrandMenuItem, index:Int){
         grandMenuTable?.selectIndex(index)
     }
     

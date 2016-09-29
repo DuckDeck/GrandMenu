@@ -16,14 +16,14 @@ class ViewDemoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let btn = UIBarButtonItem(title: "换色", style: .Plain, target: self, action: #selector(ViewDemoViewController.changeColor))
+        let btn = UIBarButtonItem(title: "换色", style: .plain, target: self, action: #selector(ViewDemoViewController.changeColor))
         navigationItem.rightBarButtonItem = btn
-        let btn2 = UIBarButtonItem(title: "字大小", style: .Plain, target: self, action: #selector(ViewDemoViewController.changeFont))
+        let btn2 = UIBarButtonItem(title: "字大小", style: .plain, target: self, action: #selector(ViewDemoViewController.changeFont))
         navigationItem.rightBarButtonItems?.append(btn2)
-        grandMenu = GrandMenu(frame:CGRect(x: 0, y: 64, width: UIScreen.mainScreen().bounds.size.width, height: 40) , titles:  ["First","Second","Third","Fouth","Fifth"])
-        grandMenu?.backgroundColor = UIColor.whiteColor()
+        grandMenu = GrandMenu(frame:CGRect(x: 0, y: 64, width: UIScreen.main.bounds.size.width, height: 40) , titles:  ["First","Second","Third","Fouth","Fifth"])
+        grandMenu?.backgroundColor = UIColor.white
         grandMenu?.selectMenu = scrollCallback
-        grandMenu?.itemColor = UIColor.greenColor()
+        grandMenu?.itemColor = UIColor.green
         grandMenu?.itemFont = 14
         grandMenu?.itemSelectedFont = 18
         grandMenu?.sliderBarHeight = 5
@@ -33,13 +33,13 @@ class ViewDemoViewController: UIViewController {
         //  grandMenu?.addBottomLine(UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 0.6), height: 5)
         grandMenu?.addBottomLine(UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 0.6), size: CGSize(width: 200, height: 1))
         
-        let v1 = TableView(frame: CGRectZero)
-        let v2 = TableView(frame: CGRectZero)
-        let v3 = TableView(frame: CGRectZero)
-        let v4 = TableView(frame: CGRectZero)
-        let v5 = TableView(frame: CGRectZero)
+        let v1 = TableView(frame: CGRect.zero)
+        let v2 = TableView(frame: CGRect.zero)
+        let v3 = TableView(frame: CGRect.zero)
+        let v4 = TableView(frame: CGRect.zero)
+        let v5 = TableView(frame: CGRect.zero)
         
-        grandMenuTable = GrandMenuTable(frame: CGRect(x: 0, y: CGRectGetMaxY(grandMenu!.frame), width: UIScreen.mainScreen().bounds.size.width, height: view.frame.size.height - 104), arrViews: [v1,v2,v3,v4,v5])
+        grandMenuTable = GrandMenuTable(frame: CGRect(x: 0, y: grandMenu!.frame.maxY, width: UIScreen.main.bounds.size.width, height: view.frame.size.height - 104), arrViews: [v1,v2,v3,v4,v5])
         
         grandMenuTable?.scrollToIndex = scrollToIndex
         view.addSubview(grandMenuTable!)
@@ -51,12 +51,12 @@ class ViewDemoViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func scrollToIndex(index:Int){
+    func scrollToIndex(_ index:Int){
         grandMenu?.selectSlideBarItemAtIndex(index)
     }
     
     
-    func scrollCallback(item:GrandMenuItem, index:Int){
+    func scrollCallback(_ item:GrandMenuItem, index:Int){
         grandMenuTable?.selectIndex(index)
     }
     
@@ -113,17 +113,17 @@ class TableView: UIView ,UITableViewDataSource{
     
   
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrData!.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentity = "vc1"
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentity)
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellIdentity)
         if cell == nil{
-            cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentity)
+            cell = UITableViewCell(style: .default, reuseIdentifier: cellIdentity)
         }
-        cell?.textLabel?.text = arrData![indexPath.row]
+        cell?.textLabel?.text = arrData![(indexPath as NSIndexPath).row]
         return cell!
     }
     

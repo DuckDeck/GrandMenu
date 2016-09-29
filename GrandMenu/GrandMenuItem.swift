@@ -8,9 +8,9 @@
 
 import UIKit
 protocol GraneMenuItemDelegate:NSObjectProtocol{
-    func GraneMenuItemSelected(item:GrandMenuItem)
+    func GraneMenuItemSelected(_ item:GrandMenuItem)
 }
-public class GrandMenuItem: UIView {
+open class GrandMenuItem: UIView {
     var selected:Bool = false{
         didSet{
             setNeedsDisplay()
@@ -33,12 +33,12 @@ public class GrandMenuItem: UIView {
             setNeedsDisplay()
         }
     }
-    var color:UIColor = UIColor.blackColor(){
+    var color:UIColor = UIColor.black{
         didSet{
             setNeedsDisplay()
         }
     }
-    var selectedColor:UIColor = UIColor.redColor(){
+    var selectedColor:UIColor = UIColor.red{
         didSet{
             setNeedsDisplay()
         }
@@ -50,39 +50,39 @@ public class GrandMenuItem: UIView {
         super.init(coder: aDecoder)
     }
     
-    private override init(frame: CGRect) {
+    fileprivate override init(frame: CGRect) {
         super.init(frame: frame)
         //backgroundColor = UIColor.clearColor()
     }
     
     convenience init(){
         self.init(frame:CGRect(x: 0, y: 0, width: 0, height: 0))
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
     }
     
-    override public func drawRect(rect: CGRect) {
-        let titleX = (CGRectGetWidth(frame) - titleSize().width) * 0.5
-        let titleY = (CGRectGetHeight(frame) - titleSize().height) * 0.5
+    override open func draw(_ rect: CGRect) {
+        let titleX = (frame.width - titleSize().width) * 0.5
+        let titleY = (frame.height - titleSize().height) * 0.5
         let titleRect = CGRect(x: titleX, y: titleY, width: titleSize().width, height: titleSize().height)
         let attributes = [NSFontAttributeName:titleFont(),NSForegroundColorAttributeName:titleColor()]
         if let currentTitle = title{
-            (currentTitle as NSString).drawInRect(titleRect, withAttributes: attributes)
+            (currentTitle as NSString).draw(in: titleRect, withAttributes: attributes)
         }
     }
     
     func titleSize()->CGSize{
         let attribures = [NSFontAttributeName:titleFont()]
-        var size = (title! as NSString).boundingRectWithSize(CGSizeMake(CGFloat(MAXFLOAT), CGFloat(MAXFLOAT)), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: attribures, context: nil).size
+        var size = (title! as NSString).boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: CGFloat(MAXFLOAT)), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: attribures, context: nil).size
         size.width = ceil(size.width)
         size.height = ceil(size.height)
         return size
     }
     func titleFont()->UIFont{
         if selected{
-            return UIFont.boldSystemFontOfSize(CGFloat(selectedFontSize))
+            return UIFont.boldSystemFont(ofSize: CGFloat(selectedFontSize))
         }
         else{
-            return UIFont.boldSystemFontOfSize(CGFloat(fontSize))
+            return UIFont.boldSystemFont(ofSize: CGFloat(fontSize))
         }
     }
     func titleColor()->UIColor{
@@ -95,19 +95,19 @@ public class GrandMenuItem: UIView {
         }
     }
     
-    static func getTitleWidth(title:String,fontSize: Float)->Float{
-        let attributes = [NSFontAttributeName:UIFont.systemFontOfSize(CGFloat(fontSize))]
-        var size = (title as NSString).boundingRectWithSize(CGSize(width: CGFloat(MAXFLOAT), height: CGFloat(MAXFLOAT)), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: attributes, context: nil).size
+    static func getTitleWidth(_ title:String,fontSize: Float)->Float{
+        let attributes = [NSFontAttributeName:UIFont.systemFont(ofSize: CGFloat(fontSize))]
+        var size = (title as NSString).boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: CGFloat(MAXFLOAT)), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: attributes, context: nil).size
         size.width = ceil(size.width) + CGFloat(20)
         return Float(size.width)
     }
     
-    override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         selected = true
         delegate?.GraneMenuItemSelected(self)
     }
     
-    override public func isEqual(object: AnyObject?) -> Bool {
+    override open func isEqual(_ object: Any?) -> Bool {
         if object == nil
         {
             return false
