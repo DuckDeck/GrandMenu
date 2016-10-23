@@ -274,7 +274,6 @@ open class GrandMenu: UIView,GraneMenuItemDelegate {
             let item = arrItems!.find({(s:GrandMenuItem) ->Bool in return s.selected == item.selected })
             call(item.0!, item.1)
         }
-        
     }
     
     open  func selectSlideBarItemAtIndex(_ index:Int){
@@ -287,7 +286,6 @@ open class GrandMenu: UIView,GraneMenuItemDelegate {
         addAnimationWithSelectedItem(item)
         selectedItem = item
     }
-    
 }
 
 extension Array{
