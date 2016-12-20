@@ -9,14 +9,26 @@
 import UIKit
 
 open class GrandMenuTable: UIView,UITableViewDataSource,UITableViewDelegate {
-   open  var tb:UITableView?
-   fileprivate var arrViewControllers:[UIViewController]?
-   fileprivate var arrViews:[UIView]?
-   open var scrollToIndex:((_ index:Int)->Void)?
+    open  var tb:UITableView?
+    fileprivate var arrViewControllers:[UIViewController]?
+    fileprivate var arrViews:[UIView]?
+    open var cellBgColor = UIColor.clear
+    public var itemCount:Int{
+        get{
+            if arrViewControllers != nil{
+                return arrViewControllers!.count
+            }
+            else if arrViews != nil{
+                return arrViews!.count
+            }
+            return 0
+        }
+    }
+    open var scrollToIndex:((_ index:Int)->Void)?
     fileprivate override init(frame: CGRect) {
         super.init(frame: frame)
     }
-  public  convenience init(frame:CGRect,arrViewControllers:[UIViewController]){
+    public  convenience init(frame:CGRect,arrViewControllers:[UIViewController]){
         self.init(frame:frame)
         self.arrViewControllers = arrViewControllers
         tb = UITableView()
@@ -48,7 +60,11 @@ open class GrandMenuTable: UIView,UITableViewDataSource,UITableViewDelegate {
         addSubview(tb!)
     }
     
-
+    public func addController(controller:UIViewController){
+        arrViewControllers?.append(controller)
+        let index = IndexPath(row: arrViewControllers!.count - 1, section: 0)
+        tb?.reloadRows(at: [index], with: .none)
+    }
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -71,14 +87,25 @@ open class GrandMenuTable: UIView,UITableViewDataSource,UITableViewDelegate {
             cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "GrandCell")
             cell?.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2))
             cell?.selectionStyle = .none
+            cell?.backgroundColor =  cellBgColor
             cell?.contentView.backgroundColor = UIColor.clear
         }
-        if arrViewControllers != nil{
+        if arrViewControllers != nil {
+            if cell!.contentView.subviews.count > 0{
+                for v in cell!.contentView.subviews{
+                    v.removeFromSuperview()
+                }
+            }
             let v = arrViewControllers![(indexPath as NSIndexPath).row]
             v.view.frame = cell!.bounds
             cell?.contentView.addSubview(v.view)
         }
-        else if arrViews != nil{
+        else if arrViews != nil {
+            if cell!.contentView.subviews.count > 0{
+                for v in cell!.contentView.subviews{
+                    v.removeFromSuperview()
+                }
+            }
             let v = arrViews![(indexPath as NSIndexPath).row]
             cell?.contentView.addSubview(v)
         }
@@ -96,11 +123,11 @@ open class GrandMenuTable: UIView,UITableViewDataSource,UITableViewDelegate {
         }
     }
     
-   open  func selectIndex(_ index:Int){
-    weak var weakSelf = self
-    UIView.animate(withDuration: 0.3, animations: { () -> Void in
-        weakSelf?.tb?.scrollToRow(at: IndexPath(row: index, section: 0), at: .none, animated: true)
-    }) 
-}
-
+    open  func selectIndex(_ index:Int){
+        weak var weakSelf = self
+        UIView.animate(withDuration: 0.3, animations: { () -> Void in
+            weakSelf?.tb?.scrollToRow(at: IndexPath(row: index, section: 0), at: .none, animated: true)
+        })
+    }
+    
 }

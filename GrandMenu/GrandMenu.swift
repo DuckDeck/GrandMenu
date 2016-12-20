@@ -167,7 +167,7 @@ open class GrandMenu: UIView,GraneMenuItemDelegate {
             item.delegate = weakSelf
             var itemWidth = GrandMenuItem.getTitleWidth(title,fontSize: item.fontSize)
             if averageManu{
-                itemWidth = Float(UIScreen.main.bounds.width / CGFloat(arrItemsTitle!.count))
+                itemWidth = Float(frame.size.width / CGFloat(arrItemsTitle!.count))
             }
             item.frame = CGRect(x: CGFloat(x), y: CGFloat(0), width: CGFloat(itemWidth), height: scrollView!.frame.height)
             item.title = title
