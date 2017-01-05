@@ -21,7 +21,7 @@ class ViewControllerDemoViewController: UIViewController {
         navigationItem.rightBarButtonItem = btn
         let btn2 = UIBarButtonItem(title: "字大小", style: .plain, target: self, action: #selector(ViewControllerDemoViewController.changeFont))
         navigationItem.rightBarButtonItems?.append(btn2)
-        grandMenu = GrandMenu(frame:CGRect(x: 0, y: 64, width: UIScreen.main.bounds.size.width, height: 40) , titles:  ["First","Second","Third","Fouth","Fifth"])
+        grandMenu = GrandMenu(frame:CGRect(x: 0, y: 64, width: UIScreen.main.bounds.size.width, height: 40) , titles:  ["First","Second","Third","FouthFouthFouth","Fifth","1","2","Thir333333d","Fo44uth","7"])
         grandMenu?.backgroundColor = UIColor.white
         grandMenu?.selectMenu = scrollCallback
         grandMenu?.itemColor = UIColor.green
@@ -44,6 +44,16 @@ class ViewControllerDemoViewController: UIViewController {
         arrControllers?.append(vc3)
         arrControllers?.append(vc4)
         arrControllers?.append(vc5)
+        let vc6 = Controller1()
+        let vc7 = Controller2()
+        let vc8 = Controller3()
+        let vc9 = Controller4()
+        let vc10 = Controller5()
+        arrControllers?.append(vc6)
+        arrControllers?.append(vc7)
+        arrControllers?.append(vc8)
+        arrControllers?.append(vc9)
+        arrControllers?.append(vc10)
         grandMenuTable = GrandMenuTable(frame: CGRect(x: 0, y: grandMenu!.frame.maxY, width: UIScreen.main.bounds.size.width, height: view.frame.size.height - 104), arrViewControllers: arrControllers!)
         grandMenuTable?.scrollToIndex = scrollToIndex
         view.addSubview(grandMenuTable!)

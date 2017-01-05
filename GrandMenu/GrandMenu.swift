@@ -30,7 +30,7 @@ open class GrandMenu: UIView,GraneMenuItemDelegate {
         }
     }
     
-    open var  averageManu:Bool = true{  //当Menu过多时,设置无效
+    open var  averageManu:Bool = false{  //当Menu过多时,设置无效
         didSet{
             if arrItemsTitle!.count <= 5{
                 setupItems()
@@ -247,17 +247,16 @@ open class GrandMenu: UIView,GraneMenuItemDelegate {
     
     open func adjustScrollOffset(){
         let x = selectedItem!.frame.origin.x
-        //        if x < selectedItem!.frame.size.width * 2 || x > scrollView!.contentSize.width - 2 * selectedItem!.frame.size.width {
-        //            return
-        //        }
-        if x < selectedItem!.frame.size.width * 2 {
+        let right = x + selectedItem!.frame.size.width
+        print("x:\(x)")
+        if right < 0.5 * scrollView!.frame.width {
             scrollView?.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         }
-        else if  x > scrollView!.contentSize.width - 4 * selectedItem!.frame.size.width{
+        else if  right > scrollView!.contentSize.width - 0.5 * scrollView!.frame.width{
             scrollView?.setContentOffset(CGPoint(x: scrollView!.contentSize.width - scrollView!.frame.width, y: 0), animated: true)
         }
         else{
-            scrollView?.setContentOffset(CGPoint(x: x - selectedItem!.frame.size.width * 2, y: 0), animated: true)
+            scrollView?.setContentOffset(CGPoint(x: x - 0.5 * scrollView!.frame.width + selectedItem!.frame.size.width * 0.5, y: 0), animated: true)
         }
     }
     
