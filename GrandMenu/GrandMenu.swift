@@ -248,8 +248,7 @@ open class GrandMenu: UIView,GraneMenuItemDelegate {
     open func adjustScrollOffset(){
         let x = selectedItem!.frame.origin.x
         let right = x + selectedItem!.frame.size.width
-        print("x:\(x)")
-        if right < 0.5 * scrollView!.frame.width {
+        if right <= 0.5 * scrollView!.frame.width {
             scrollView?.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         }
         else if  right > scrollView!.contentSize.width - 0.5 * scrollView!.frame.width{
