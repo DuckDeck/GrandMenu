@@ -28,6 +28,7 @@ class ViewControllerDemoViewController: UIViewController {
         grandMenu?.itemFont = 14
         grandMenu?.itemSelectedFont = 18
         grandMenu?.sliderBarHeight = 5
+        grandMenu?.averageManu = false
         grandMenu?.sliderBarLeftRightOffset = 15
         grandMenu?.itemSelectedFont = 16
         view.addSubview(grandMenu!)

@@ -44,7 +44,7 @@ open class GrandMenuItem: UIView {
         }
     }
     
-   weak var delegate:GraneMenuItemDelegate?
+    weak var delegate:GraneMenuItemDelegate?
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -95,10 +95,10 @@ open class GrandMenuItem: UIView {
         }
     }
     
-    static func getTitleWidth(_ title:String,fontSize: Float)->Float{
+    static func getTitleWidth(_ title:String,fontSize: Float,leftrightOffset:Float = 10)->Float{
         let attributes = [NSFontAttributeName:UIFont.systemFont(ofSize: CGFloat(fontSize))]
         var size = (title as NSString).boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: CGFloat(MAXFLOAT)), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: attributes, context: nil).size
-        size.width = ceil(size.width) + CGFloat(20)
+        size.width = ceil(size.width) + CGFloat(leftrightOffset * 2)
         return Float(size.width)
     }
     

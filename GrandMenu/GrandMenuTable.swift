@@ -123,11 +123,26 @@ open class GrandMenuTable: UIView,UITableViewDataSource,UITableViewDelegate {
         }
     }
     
-    open  func selectIndex(_ index:Int){
+    open func viewFromIndex(index:Int)->UIView?{
+        if arrViews != nil{
+            return arrViews![index]
+        }
+        else if arrViewControllers != nil{
+            return arrViewControllers![index].view
+        }
+        return nil
+    }
+    
+    open  func selectIndex(_ index:Int,animation:Bool = true){
         weak var weakSelf = self
-        UIView.animate(withDuration: 0.3, animations: { () -> Void in
-            weakSelf?.tb?.scrollToRow(at: IndexPath(row: index, section: 0), at: .none, animated: true)
-        })
+        if animation{
+            UIView.animate(withDuration: 0.3, animations: { () -> Void in
+                weakSelf?.tb?.scrollToRow(at: IndexPath(row: index, section: 0), at: .none, animated: animation)
+            })
+        }
+        else{
+            tb?.scrollToRow(at: IndexPath(row: index, section: 0), at: .none, animated: animation)
+        }
     }
     
 }

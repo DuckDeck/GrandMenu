@@ -9,34 +9,18 @@
 import UIKit
 
 open class GrandMenu: UIView,GraneMenuItemDelegate {
-    open var arrItemsTitle:[String]?{
-        didSet{
-            setupItems()
-        }
-    }
-    open var sliderBarLeftRightOffset = 15{
-        didSet{
-            setupItems()
-        }
-    }
-    open  var sliderBarHeight = 2{
-        didSet{
-            setupItems()
-        }
-    }
+    open var arrItemsTitle:[String]?
+    open var sliderBarLeftRightOffset = 15
+    open var itemLeftRightOffset:Float = 10
+    open  var sliderBarHeight = 2
     open  var sliderColor = UIColor.red{
         didSet{
             vSlider?.backgroundColor = sliderColor
         }
     }
+    var allItemWidth:Float  = 0
+    open var  averageManu:Bool = true //当Menu过多时,设置无效
     
-    open var  averageManu:Bool = false{  //当Menu过多时,设置无效
-        didSet{
-            if arrItemsTitle!.count <= 5{
-                setupItems()
-            }
-        }
-    }
     open  var defaultSelectedIndex:Int = 0{
         didSet{
             if defaultSelectedIndex < arrItemsTitle!.count{
@@ -136,7 +120,6 @@ open class GrandMenu: UIView,GraneMenuItemDelegate {
             }
         }
         arrItemsTitle = titles
-        setupItems()
     }
     open func addBottomLine(_ bgColor:UIColor,size:CGSize){
         vBottomLine = UIView(frame: CGRect(x: (frame.size.width - size.width) / 2, y: frame.size.height, width: size.width, height: size.height))
@@ -144,6 +127,12 @@ open class GrandMenu: UIView,GraneMenuItemDelegate {
         addSubview(vBottomLine!)
         frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.size.width, height: vBottomLine!.frame.maxY)
     }
+    
+    open override func willMove(toSuperview newSuperview: UIView?) {
+        super.willMove(toSuperview: newSuperview)
+        setupItems()
+    }
+    
     
     func setupItems(){
         weak var weakSelf = self
@@ -154,6 +143,8 @@ open class GrandMenu: UIView,GraneMenuItemDelegate {
         }
         arrItems?.removeAll(keepingCapacity: true)
         var x:Float = 0
+        var maxItemWidth:Float = 0.0
+        allItemWidth = 0
         for  title in arrItemsTitle! {
             let item = GrandMenuItem()
             item.selectedColor = itemSeletedColor
@@ -165,10 +156,20 @@ open class GrandMenu: UIView,GraneMenuItemDelegate {
                 item.selectedFontSize = sf
             }
             item.delegate = weakSelf
-            var itemWidth = GrandMenuItem.getTitleWidth(title,fontSize: item.fontSize)
-            if averageManu{
-                itemWidth = Float(frame.size.width / CGFloat(arrItemsTitle!.count))
+            var itemWidth = GrandMenuItem.getTitleWidth(title, fontSize: item.fontSize, leftrightOffset: itemLeftRightOffset)
+            
+            if itemWidth > maxItemWidth{
+                maxItemWidth = itemWidth
             }
+            if averageManu{
+                if maxItemWidth * Float(arrItemsTitle!.count) > Float(frame.size.width){
+                    itemWidth = maxItemWidth
+                }
+                else{
+                    itemWidth = Float(frame.size.width / CGFloat(arrItemsTitle!.count))
+                }
+            }
+            allItemWidth = allItemWidth + itemWidth
             item.frame = CGRect(x: CGFloat(x), y: CGFloat(0), width: CGFloat(itemWidth), height: scrollView!.frame.height)
             item.title = title
             arrItems!.append(item)
@@ -214,9 +215,10 @@ open class GrandMenu: UIView,GraneMenuItemDelegate {
         scrollView?.contentOffset = offset
     }
     
-    func addAnimationWithSelectedItem(_ item:GrandMenuItem)
+    func addAnimationWithSelectedItem(_ item:GrandMenuItem,withAnimation:Bool = true)
     {
-        let dx = item.frame.midX - selectedItem!.frame.midX
+        // let dx = item.frame.midX - selectedItem!.frame.midX
+        let dx = item.frame.midX - vSlider!.frame.size.width / 2
         //        let positionAnimation = CABasicAnimation()
         //        positionAnimation.keyPath = "position.x"
         //        positionAnimation.fromValue = vSlider?.layer.position.x
@@ -239,10 +241,15 @@ open class GrandMenu: UIView,GraneMenuItemDelegate {
         //        vSlider?.layer.bounds = rect
         //这个动画有个小Bug,目前不知道怎么修正,它会先把滑块移动到目的地再消失,再执行动画,所以只好用下面的方法了,这种情况有30%的可能性发生
         //不用这种动画试试
-        weak var weakSelf = self
-        UIView.animate(withDuration: 0.2, animations: { () -> Void in
-            weakSelf?.vSlider?.frame = CGRect(x: weakSelf!.vSlider!.frame.origin.x + dx, y:weakSelf!.vSlider!.frame.origin.y, width: weakSelf!.vSlider!.frame.size.width, height: weakSelf!.vSlider!.frame.size.height)
-        }) 
+        if withAnimation{
+            weak var weakSelf = self
+            UIView.animate(withDuration: 0.2, animations: { () -> Void in
+                weakSelf?.vSlider?.frame = CGRect(x:  dx, y:weakSelf!.vSlider!.frame.origin.y, width: weakSelf!.vSlider!.frame.size.width, height: weakSelf!.vSlider!.frame.size.height)
+            })
+        }
+        else{
+            vSlider?.frame = CGRect(x:  dx, y: vSlider!.frame.origin.y, width: vSlider!.frame.size.width, height: vSlider!.frame.size.height)
+        }
     }
     
     open func adjustScrollOffset(){
@@ -252,15 +259,23 @@ open class GrandMenu: UIView,GraneMenuItemDelegate {
             scrollView?.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         }
         else if  right > scrollView!.contentSize.width - 0.5 * scrollView!.frame.width{
+            if CGFloat(allItemWidth) < scrollView!.frame.width{
+                return
+            }
             scrollView?.setContentOffset(CGPoint(x: scrollView!.contentSize.width - scrollView!.frame.width, y: 0), animated: true)
         }
         else{
-            scrollView?.setContentOffset(CGPoint(x: x - 0.5 * scrollView!.frame.width + selectedItem!.frame.size.width * 0.5, y: 0), animated: true)
+            let of = x - 0.5 * scrollView!.frame.width + selectedItem!.frame.size.width * 0.5
+            if of > 0{
+                scrollView?.setContentOffset(CGPoint(x: of, y: 0), animated: true)
+            }
         }
     }
     
     func GraneMenuItemSelected(_ item: GrandMenuItem) {
+        
         if item == selectedItem!{
+            addAnimationWithSelectedItem(item)
             return
         }
         addAnimationWithSelectedItem(item)
@@ -274,16 +289,57 @@ open class GrandMenu: UIView,GraneMenuItemDelegate {
         }
     }
     
-    open  func selectSlideBarItemAtIndex(_ index:Int){
+    open  func selectSlideBarItemAtIndex(_ index:Int,withAnimation:Bool = true){
         let item = arrItems![index]
         if item == selectedItem!{
+            addAnimationWithSelectedItem(item)
             return
         }
         item.selected = true
         scrollToVisibleItem(item)
-        addAnimationWithSelectedItem(item)
+        addAnimationWithSelectedItem(item, withAnimation: withAnimation)
         selectedItem = item
+        
+        //it will check
+        if let call = selectMenu{
+            let item = arrItems!.find({(s:GrandMenuItem) ->Bool in return s.selected == item.selected })
+            call(item.0!, item.1)
+        }
     }
+    
+    open func setSlidertBar(x:Float)  {
+        if x < 0{
+            //            if vSlider!.frame.origin.x + vSlider!.frame.size.width < self.frame.size.width{
+            vSlider!.frame = CGRect(x: vSlider!.frame.origin.x - CGFloat(x), y: vSlider!.frame.origin.y, width: vSlider!.frame.size.width, height: vSlider!.frame.size.height)
+            //            }
+        }
+        else{
+            //            if vSlider!.frame.origin.x > 0{
+            vSlider!.frame = CGRect(x: vSlider!.frame.origin.x - CGFloat(x), y: vSlider!.frame.origin.y, width: vSlider!.frame.size.width, height: vSlider!.frame.size.height)
+            //            }
+        }
+    }
+    
+    open func adjustSlider()  {
+        let center =  vSlider!.frame.origin.x + vSlider!.frame.size.width / 2
+        if center < -10 {
+            selectSlideBarItemAtIndex(arrItems!.count - 1, withAnimation: false)
+            return
+        }
+        if center > arrItems!.last!.frame.origin.x + arrItems!.last!.frame.size.width + 10{
+            selectSlideBarItemAtIndex(0,withAnimation: false)
+            return
+        }
+        var index = 0
+        for i in 0..<arrItems!.count {
+            if center > arrItems![i].frame.origin.x && center <= arrItems![i].frame.origin.x + arrItems![i].frame.size.width{
+                index = i
+                break
+            }
+        }
+        selectSlideBarItemAtIndex(index)
+    }
+    
 }
 
 extension Array{
