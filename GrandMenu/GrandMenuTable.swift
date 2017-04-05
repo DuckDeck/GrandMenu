@@ -32,7 +32,7 @@ open class GrandMenuTable: UIView,UITableViewDataSource,UITableViewDelegate {
         self.init(frame:frame)
         self.arrViewControllers = arrViewControllers
         tb = UITableView()
-        tb?.transform = CGAffineTransform(rotationAngle: CGFloat(-M_PI_2))
+        tb?.transform = CGAffineTransform(rotationAngle: CGFloat(-Double.pi / 2))
         tb?.frame = self.bounds
         tb?.bounces = false
         tb?.scrollsToTop = true
@@ -48,7 +48,7 @@ open class GrandMenuTable: UIView,UITableViewDataSource,UITableViewDelegate {
         self.init(frame:frame)
         self.arrViews = arrViews
         tb = UITableView()
-        tb?.transform = CGAffineTransform(rotationAngle: CGFloat(-M_PI_2))
+        tb?.transform = CGAffineTransform(rotationAngle: CGFloat(-Double.pi / 2))
         tb?.frame = self.bounds
         tb?.bounces = false
         tb?.scrollsToTop = true
@@ -85,7 +85,7 @@ open class GrandMenuTable: UIView,UITableViewDataSource,UITableViewDelegate {
         var cell = tableView.dequeueReusableCell(withIdentifier: "GrandCell")
         if cell == nil{
             cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "GrandCell")
-            cell?.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2))
+            cell?.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi / 2))
             cell?.selectionStyle = .none
             cell?.backgroundColor =  cellBgColor
             cell?.contentView.backgroundColor = UIColor.clear
