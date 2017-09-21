@@ -1,16 +1,23 @@
 //
-//  GrandMenuTable.swift
+//  GrandPageContentView.swift
 //  GrandMenuDemo
 //
-//  Created by Tyrant on 1/15/16.
-//  Copyright © 2016 Qfq. All rights reserved.
+//  Created by Stan Hu on 21/9/2017.
+//  Copyright © 2017 Qfq. All rights reserved.
 //
 
 import UIKit
 
-open class GrandMenuTable: UIView {
-    let cellId = "GrandCelId"
+@objc protocol GrandPageContentViewDelagate {
+  @objc optional  func contentViewWillBeginDragging(contentview:GrandPageContentView)
+  @objc optional  func contentViewDidScroll(contentview:GrandPageContentView,startIndex:CGFloat,endIndex:CGFloat,progress:CGFloat)
+  @objc optional  func contentViewDidEndDecelerating(contentview:GrandPageContentView,startIndex:CGFloat,endIndex:CGFloat)
+}
 
+class GrandPageContentView: UIView {
+     let cellId = "GrandCelId"
+
+    open var delegate:GrandPageContentViewDelagate?
     open var contentViewCurrentIndex = 0{
         didSet{
             if contentViewCurrentIndex < 0 || contentViewCurrentIndex > self.childViewController!.count-1{
@@ -23,7 +30,7 @@ open class GrandMenuTable: UIView {
     }
     open var contentViewCanScroll = true{
         didSet{
-            self.collectionView?.isScrollEnabled = self.contentViewCanScroll
+             self.collectionView?.isScrollEnabled = self.contentViewCanScroll
         }
     }
     
@@ -33,11 +40,11 @@ open class GrandMenuTable: UIView {
     fileprivate var startOffsetX:CGFloat = 0.0
     fileprivate var isSelectBtn = false
     
-    init(frame: CGRect,childViewControllers:[UIViewController],parentViewController:UIViewController) {
+     init(frame: CGRect,childViewControllers:[UIViewController],parentViewController:UIViewController,delegate:GrandPageContentViewDelagate) {
         super.init(frame: frame)
         self.parentViewController = parentViewController
         self.childViewController = childViewControllers
-
+        self.delegate = delegate
         
         let collectionViewFlowLayout = UICollectionViewFlowLayout()
         collectionViewFlowLayout.itemSize = self.bounds.size
@@ -60,19 +67,19 @@ open class GrandMenuTable: UIView {
         
     }
     
-    
-    required public init?(coder aDecoder: NSCoder) {
+
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
 }
 
-extension GrandMenuTable:UICollectionViewDataSource,UICollectionViewDelegate{
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+extension GrandPageContentView:UICollectionViewDataSource,UICollectionViewDelegate{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.childViewController?.count ?? 0
     }
     
-    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
         cell.contentView.subviews.forEach { (v) in
             v.removeFromSuperview()
@@ -83,12 +90,13 @@ extension GrandMenuTable:UICollectionViewDataSource,UICollectionViewDelegate{
         return cell
     }
     
-    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         isSelectBtn = false
         startOffsetX = scrollView.contentOffset.x
+        delegate?.contentViewWillBeginDragging?(contentview: self)
     }
     
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if isSelectBtn {
             return
         }
@@ -114,15 +122,18 @@ extension GrandMenuTable:UICollectionViewDataSource,UICollectionViewDelegate{
             endIndex = endIndex < 0 ? 0 : endIndex
         }
         
+        delegate?.contentViewDidScroll?(contentview: self, startIndex: startIndex, endIndex: endIndex, progress: progress)
     }
     
-    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let scrollViewWidth = scrollView.bounds.size.width
         let currentOffsetX = scrollView.contentOffset.x
         let startIndex = floor(startOffsetX / scrollViewWidth)
         let endIndex = floor(currentOffsetX / scrollViewWidth)
+        delegate?.contentViewDidEndDecelerating?(contentview: self, startIndex: startIndex, endIndex: endIndex)
     }
     
+
+    
+   
 }
-
-

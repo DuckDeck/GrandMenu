@@ -55,8 +55,9 @@ class ViewControllerDemoViewController: UIViewController {
         arrControllers?.append(vc8)
         arrControllers?.append(vc9)
         arrControllers?.append(vc10)
-        grandMenuTable = GrandMenuTable(frame: CGRect(x: 0, y: grandMenu!.frame.maxY, width: UIScreen.main.bounds.size.width, height: view.frame.size.height - 104), arrViewControllers: arrControllers!)
-        grandMenuTable?.scrollToIndex = scrollToIndex
+        
+
+        grandMenuTable = GrandMenuTable(frame: CGRect(x: 0, y: grandMenu!.frame.maxY, width: UIScreen.main.bounds.size.width, height: view.frame.size.height - 104), childViewControllers: arrControllers!, parentViewController: self)
         view.addSubview(grandMenuTable!)
     }
     
@@ -64,13 +65,11 @@ class ViewControllerDemoViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    func scrollToIndex(_ index:Int){
-        grandMenu?.selectSlideBarItemAtIndex(index)
-    }
+
     
     
     func scrollCallback(_ item:GrandMenuItem, index:Int){
-        grandMenuTable?.selectIndex(index)
+        grandMenuTable?.contentViewCurrentIndex = index
     }
     
     func changeColor(){
