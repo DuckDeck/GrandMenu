@@ -28,6 +28,7 @@
 		AE99792F1F73C1D7009A5A03 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9979281F73C1D7009A5A03 /* ContentViewController.swift */; };
 		AE9979321F73C1D7009A5A03 /* GrandMenuTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE99792B1F73C1D7009A5A03 /* GrandMenuTable.swift */; };
 		AE9979331F73C1D7009A5A03 /* GrandBaseTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE99792C1F73C1D7009A5A03 /* GrandBaseTable.swift */; };
+		AEFF8D7B1F73E9AB002E1AE6 /* ScollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFF8D7A1F73E9AB002E1AE6 /* ScollViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		AE9979281F73C1D7009A5A03 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		AE99792B1F73C1D7009A5A03 /* GrandMenuTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrandMenuTable.swift; sourceTree = "<group>"; };
 		AE99792C1F73C1D7009A5A03 /* GrandBaseTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrandBaseTable.swift; sourceTree = "<group>"; };
+		AEFF8D7A1F73E9AB002E1AE6 /* ScollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScollViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				A205AA8C1C4893020043F5F6 /* Controller3.swift */,
 				A205AA8D1C4893020043F5F6 /* Controller4.swift */,
 				A205AA8E1C4893020043F5F6 /* Controller5.swift */,
+				AEFF8D7A1F73E9AB002E1AE6 /* ScollViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -164,7 +167,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = Qfq;
 				TargetAttributes = {
 					A205AA6C1C488E880043F5F6 = {
@@ -216,6 +219,7 @@
 				AE99792E1F73C1D7009A5A03 /* GrandPageContentView.swift in Sources */,
 				A205AA731C488E880043F5F6 /* ViewController.swift in Sources */,
 				A205AA841C488F1E0043F5F6 /* GrandMenu.swift in Sources */,
+				AEFF8D7B1F73E9AB002E1AE6 /* ScollViewController.swift in Sources */,
 				A205AA931C4893020043F5F6 /* Controller5.swift in Sources */,
 				A205AA921C4893020043F5F6 /* Controller4.swift in Sources */,
 				A205AA911C4893020043F5F6 /* Controller3.swift in Sources */,
@@ -254,14 +258,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -300,14 +310,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
