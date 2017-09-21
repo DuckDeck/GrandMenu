@@ -89,9 +89,9 @@ class ViewDemoViewController: UIViewController,UITableViewDelegate,UITableViewDa
             if contentCell == nil {
                 contentCell = GrandCellTableViewCell(style: .default, reuseIdentifier: "cell2")
                 let titles = ["全部","游戏","汽车","电影","京东"]
-                var vcs = [ContentViewController]()
+                var vcs = [ScollViewController]()
                 for t in titles{
-                    let vc = ContentViewController()
+                    let vc = ScollViewController()
                     vc.title = t
                     vcs.append(vc)
                 }

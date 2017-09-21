@@ -15,7 +15,7 @@ class GrandCellTableViewCell: UITableViewCell {
     var cellCanScroll = false{
         didSet{
             for vc in vcs{
-                if let v = vc as? ContentViewController{
+                if let v = vc as? GrandContentViewController{
                     v.canScroll = cellCanScroll
                     v.tableView.contentOffset = CGPoint()
                 }

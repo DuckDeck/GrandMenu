@@ -25,7 +25,7 @@
 		AE7B84851CB258AB00F375AD /* ViewDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7B84841CB258AB00F375AD /* ViewDemoViewController.swift */; };
 		AE99792D1F73C1D7009A5A03 /* GrandCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9979261F73C1D7009A5A03 /* GrandCellTableViewCell.swift */; };
 		AE99792E1F73C1D7009A5A03 /* GrandPageContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9979271F73C1D7009A5A03 /* GrandPageContentView.swift */; };
-		AE99792F1F73C1D7009A5A03 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9979281F73C1D7009A5A03 /* ContentViewController.swift */; };
+		AE99792F1F73C1D7009A5A03 /* GrandContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9979281F73C1D7009A5A03 /* GrandContentViewController.swift */; };
 		AE9979321F73C1D7009A5A03 /* GrandMenuTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE99792B1F73C1D7009A5A03 /* GrandMenuTable.swift */; };
 		AE9979331F73C1D7009A5A03 /* GrandBaseTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE99792C1F73C1D7009A5A03 /* GrandBaseTable.swift */; };
 		AEFF8D7B1F73E9AB002E1AE6 /* ScollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFF8D7A1F73E9AB002E1AE6 /* ScollViewController.swift */; };
@@ -52,7 +52,7 @@
 		AE7B84841CB258AB00F375AD /* ViewDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewDemoViewController.swift; sourceTree = "<group>"; };
 		AE9979261F73C1D7009A5A03 /* GrandCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrandCellTableViewCell.swift; sourceTree = "<group>"; };
 		AE9979271F73C1D7009A5A03 /* GrandPageContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrandPageContentView.swift; sourceTree = "<group>"; };
-		AE9979281F73C1D7009A5A03 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		AE9979281F73C1D7009A5A03 /* GrandContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrandContentViewController.swift; sourceTree = "<group>"; };
 		AE99792B1F73C1D7009A5A03 /* GrandMenuTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrandMenuTable.swift; sourceTree = "<group>"; };
 		AE99792C1F73C1D7009A5A03 /* GrandBaseTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrandBaseTable.swift; sourceTree = "<group>"; };
 		AEFF8D7A1F73E9AB002E1AE6 /* ScollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScollViewController.swift; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 		A205AA821C488F0E0043F5F6 /* GrandMenu */ = {
 			isa = PBXGroup;
 			children = (
-				AE9979281F73C1D7009A5A03 /* ContentViewController.swift */,
+				AE9979281F73C1D7009A5A03 /* GrandContentViewController.swift */,
 				AE99792C1F73C1D7009A5A03 /* GrandBaseTable.swift */,
 				AE9979261F73C1D7009A5A03 /* GrandCellTableViewCell.swift */,
 				AE9979271F73C1D7009A5A03 /* GrandPageContentView.swift */,
@@ -228,7 +228,7 @@
 				A205AA8F1C4893020043F5F6 /* Controller1.swift in Sources */,
 				AE7B84831CB258A200F375AD /* ViewControllerDemoViewController.swift in Sources */,
 				AE9979331F73C1D7009A5A03 /* GrandBaseTable.swift in Sources */,
-				AE99792F1F73C1D7009A5A03 /* ContentViewController.swift in Sources */,
+				AE99792F1F73C1D7009A5A03 /* GrandContentViewController.swift in Sources */,
 				A205AA901C4893020043F5F6 /* Controller2.swift in Sources */,
 				A205AA861C488F8D0043F5F6 /* GrandMenuItem.swift in Sources */,
 				AE99792D1F73C1D7009A5A03 /* GrandCellTableViewCell.swift in Sources */,
