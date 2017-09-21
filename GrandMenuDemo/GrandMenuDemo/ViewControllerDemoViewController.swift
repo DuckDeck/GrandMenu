@@ -58,6 +58,9 @@ class ViewControllerDemoViewController: UIViewController {
         
 
         grandMenuTable = GrandMenuTable(frame: CGRect(x: 0, y: grandMenu!.frame.maxY, width: UIScreen.main.bounds.size.width, height: view.frame.size.height - 104), childViewControllers: arrControllers!, parentViewController: self)
+        grandMenuTable?.scrollToIndex = {[weak self](index:Int)in
+            self?.grandMenu?.selectSlideBarItemAtIndex(index)
+        }
         view.addSubview(grandMenuTable!)
     }
     
@@ -71,7 +74,6 @@ class ViewControllerDemoViewController: UIViewController {
     func scrollCallback(_ item:GrandMenuItem, index:Int){
         grandMenuTable?.contentViewCurrentIndex = index
     }
-    
     func changeColor(){
         let index = Int(arc4random()) % colors.count
         grandMenu?.itemSeletedColor = colors[index]
@@ -86,4 +88,8 @@ class ViewControllerDemoViewController: UIViewController {
         }
     }
 
+    deinit {
+        print("123")
+    }
+    
 }

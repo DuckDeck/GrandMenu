@@ -10,7 +10,7 @@ import UIKit
 
 open class GrandMenuTable: UIView {
     let cellId = "GrandCelId"
-
+    open var scrollToIndex:((_ index:Int)->Void)?
     open var contentViewCurrentIndex = 0{
         didSet{
             if contentViewCurrentIndex < 0 || contentViewCurrentIndex > self.childViewController!.count-1{
@@ -121,6 +121,9 @@ extension GrandMenuTable:UICollectionViewDataSource,UICollectionViewDelegate{
         let currentOffsetX = scrollView.contentOffset.x
         let startIndex = floor(startOffsetX / scrollViewWidth)
         let endIndex = floor(currentOffsetX / scrollViewWidth)
+        if let block = scrollToIndex {
+            block(Int(endIndex))
+        }
     }
     
 }
