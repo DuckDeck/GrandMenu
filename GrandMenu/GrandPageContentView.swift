@@ -8,13 +8,13 @@
 
 import UIKit
 
-@objc protocol GrandPageContentViewDelagate {
+@objc public protocol GrandPageContentViewDelagate {
   @objc optional  func contentViewWillBeginDragging(contentview:GrandPageContentView)
   @objc optional  func contentViewDidScroll(contentview:GrandPageContentView,startIndex:CGFloat,endIndex:CGFloat,progress:CGFloat)
   @objc optional  func contentViewDidEndDecelerating(contentview:GrandPageContentView,startIndex:CGFloat,endIndex:CGFloat)
 }
 
-class GrandPageContentView: UIView {
+open class GrandPageContentView: UIView {
      let cellId = "GrandCelId"
 
     weak open var delegate:GrandPageContentViewDelagate?
@@ -67,18 +67,18 @@ class GrandPageContentView: UIView {
     }
     
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
 }
 
 extension GrandPageContentView:UICollectionViewDataSource,UICollectionViewDelegate{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.childViewController?.count ?? 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
         cell.contentView.subviews.forEach { (v) in
             v.removeFromSuperview()
@@ -89,13 +89,13 @@ extension GrandPageContentView:UICollectionViewDataSource,UICollectionViewDelega
         return cell
     }
     
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         isSelectBtn = false
         startOffsetX = scrollView.contentOffset.x
         delegate?.contentViewWillBeginDragging?(contentview: self)
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if isSelectBtn {
             return
         }
@@ -123,7 +123,7 @@ extension GrandPageContentView:UICollectionViewDataSource,UICollectionViewDelega
         delegate?.contentViewDidScroll?(contentview: self, startIndex: startIndex, endIndex: endIndex, progress: progress)
     }
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let scrollViewWidth = scrollView.bounds.size.width
         let currentOffsetX = scrollView.contentOffset.x
         let startIndex = floor(startOffsetX / scrollViewWidth)

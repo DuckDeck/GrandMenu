@@ -9,40 +9,40 @@
 
 import UIKit
 
-class GrandContentViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
-    var canScroll = false;
-    var tableView = UITableView()
-    var fingerIsTouch = false
+open class GrandContentViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+    open var canScroll = false;
+    open var tableView = UITableView()
+    open var fingerIsTouch = false
     
-    override func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
        tableView = UITableView()
        tableView.dataSource = self
        tableView.delegate = self
         view.addSubview(tableView)
     }
-    override func viewWillLayoutSubviews() {
+    override open func viewWillLayoutSubviews() {
        tableView.frame = self.view.bounds
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return UITableViewCell()
     }
 
 
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         fingerIsTouch = true
     }
 
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         fingerIsTouch = false
     }
 
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if !canScroll{
             scrollView.contentOffset = CGPoint()
         }
