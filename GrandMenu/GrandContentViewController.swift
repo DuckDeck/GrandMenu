@@ -18,8 +18,7 @@ class GrandContentViewController: UIViewController,UITableViewDataSource,UITable
         super.viewDidLoad()
        tableView = UITableView()
        tableView.dataSource = self
-        tableView.delegate = self
-       
+       tableView.delegate = self
         view.addSubview(tableView)
     }
     override func viewWillLayoutSubviews() {

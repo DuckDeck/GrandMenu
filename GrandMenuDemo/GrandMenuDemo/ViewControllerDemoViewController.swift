@@ -23,7 +23,9 @@ class ViewControllerDemoViewController: UIViewController {
         navigationItem.rightBarButtonItems?.append(btn2)
         grandMenu = GrandMenu(frame:CGRect(x: 0, y: 64, width: UIScreen.main.bounds.size.width, height: 40) , titles:  ["First","Second","Third","FouthFouthFouth","Fifth","1","2","Thir333333d","Fo44uth","7"])
         grandMenu?.backgroundColor = UIColor.white
-        grandMenu?.selectMenu = scrollCallback
+        grandMenu?.selectMenu = {[weak self](item:GrandMenuItem, index:Int) in
+              self?.grandMenuTable?.contentViewCurrentIndex = index
+        }
         grandMenu?.itemColor = UIColor.green
         grandMenu?.itemFont = 14
         grandMenu?.itemSelectedFont = 18
@@ -70,10 +72,7 @@ class ViewControllerDemoViewController: UIViewController {
     }
 
     
-    
-    func scrollCallback(_ item:GrandMenuItem, index:Int){
-        grandMenuTable?.contentViewCurrentIndex = index
-    }
+
     func changeColor(){
         let index = Int(arc4random()) % colors.count
         grandMenu?.itemSeletedColor = colors[index]

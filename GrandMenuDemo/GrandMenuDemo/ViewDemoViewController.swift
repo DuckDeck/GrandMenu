@@ -114,7 +114,6 @@ class ViewDemoViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-         print("big scroll + \(scrollView.contentOffset.y)")
         let bottomCellOffset = tb.rect(forSection: 1).origin.y - 64
         if scrollView.contentOffset.y >= bottomCellOffset {
             scrollView.contentOffset = CGPoint(x: 0, y: bottomCellOffset)
@@ -132,6 +131,7 @@ class ViewDemoViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     deinit {
         NotificationCenter.default.removeObserver(self)
+        print("123")
     }
 }
 

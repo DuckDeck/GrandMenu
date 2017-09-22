@@ -17,7 +17,7 @@ import UIKit
 class GrandPageContentView: UIView {
      let cellId = "GrandCelId"
 
-    open var delegate:GrandPageContentViewDelagate?
+    weak open var delegate:GrandPageContentViewDelagate?
     open var contentViewCurrentIndex = 0{
         didSet{
             if contentViewCurrentIndex < 0 || contentViewCurrentIndex > self.childViewController!.count-1{
@@ -34,7 +34,7 @@ class GrandPageContentView: UIView {
         }
     }
     
-    fileprivate var parentViewController:UIViewController?
+    weak fileprivate var parentViewController:UIViewController?
     fileprivate var childViewController:[UIViewController]?
     fileprivate var collectionView:UICollectionView?
     fileprivate var startOffsetX:CGFloat = 0.0
@@ -64,7 +64,6 @@ class GrandPageContentView: UIView {
         }
         
         addSubview(self.collectionView!)
-        
     }
     
 
@@ -121,7 +120,6 @@ extension GrandPageContentView:UICollectionViewDataSource,UICollectionViewDelega
             endIndex = startIndex - 1
             endIndex = endIndex < 0 ? 0 : endIndex
         }
-        
         delegate?.contentViewDidScroll?(contentview: self, startIndex: startIndex, endIndex: endIndex, progress: progress)
     }
     
@@ -133,7 +131,4 @@ extension GrandPageContentView:UICollectionViewDataSource,UICollectionViewDelega
         delegate?.contentViewDidEndDecelerating?(contentview: self, startIndex: startIndex, endIndex: endIndex)
     }
     
-
-    
-   
 }

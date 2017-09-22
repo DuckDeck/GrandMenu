@@ -27,7 +27,7 @@ open class GrandMenuTable: UIView {
         }
     }
     
-    fileprivate var parentViewController:UIViewController?
+   weak fileprivate var parentViewController:UIViewController?
     fileprivate var childViewController:[UIViewController]?
     fileprivate var collectionView:UICollectionView?
     fileprivate var startOffsetX:CGFloat = 0.0
@@ -92,28 +92,6 @@ extension GrandMenuTable:UICollectionViewDataSource,UICollectionViewDelegate{
         if isSelectBtn {
             return
         }
-//        let scrollWidth = scrollView.bounds.size.width
-//        let currentOffsetX = scrollView.contentOffset.x
-//        let startIndex = floor(startOffsetX / scrollWidth)
-//        var endIndex:CGFloat = 0
-//        var progress:CGFloat = 0
-//        if currentOffsetX > startOffsetX {
-//            progress = (currentOffsetX - startOffsetX)/scrollWidth
-//            endIndex = startOffsetX + 1
-//            if endIndex > CGFloat(self.childViewController!.count - 1) {
-//                endIndex = CGFloat(self.childViewController!.count - 1)
-//            }
-//        }
-//        else if currentOffsetX == startOffsetX{
-//            progress = 0.0
-//            endIndex = startIndex
-//        }
-//        else{
-//            progress = (startOffsetX - currentOffsetX)/scrollWidth
-//            endIndex = startIndex - 1
-//            endIndex = endIndex < 0 ? 0 : endIndex
-//        }
-        
     }
     
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
