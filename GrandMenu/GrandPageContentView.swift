@@ -40,7 +40,7 @@ class GrandPageContentView: UIView {
     fileprivate var startOffsetX:CGFloat = 0.0
     fileprivate var isSelectBtn = false
     
-     init(frame: CGRect,childViewControllers:[UIViewController],parentViewController:UIViewController,delegate:GrandPageContentViewDelagate) {
+    public init(frame: CGRect,childViewControllers:[UIViewController],parentViewController:UIViewController,delegate:GrandPageContentViewDelagate) {
         super.init(frame: frame)
         self.parentViewController = parentViewController
         self.childViewController = childViewControllers

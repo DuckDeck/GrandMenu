@@ -33,7 +33,7 @@ open class GrandMenuTable: UIView {
     fileprivate var startOffsetX:CGFloat = 0.0
     fileprivate var isSelectBtn = false
     
-    init(frame: CGRect,childViewControllers:[UIViewController],parentViewController:UIViewController) {
+   public init(frame: CGRect,childViewControllers:[UIViewController],parentViewController:UIViewController) {
         super.init(frame: frame)
         self.parentViewController = parentViewController
         self.childViewController = childViewControllers
