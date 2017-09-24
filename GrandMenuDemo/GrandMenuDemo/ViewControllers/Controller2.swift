@@ -11,17 +11,43 @@ import UIKit
 class Controller2: UIViewController,UITableViewDataSource {
     var tb:UITableView?
     var arrData:[String]?
+    
+    override func loadView() {
+        super.loadView()
+        print("Controller2 load view")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tb = UITableView()
         tb?.dataSource = self
         arrData = [String]()
-        for _ in 0...40
-        {
-            arrData?.append("Controller2")
-        }
+        print("Controller2 start view did load")
+        let delayTime =  DispatchTime.now() + .seconds(3)
+        DispatchQueue.main.asyncAfter(deadline: delayTime, execute: {
+            for _ in 0...40
+            {
+                self.arrData?.append("Controller2")
+            }
+            self.tb?.reloadData()
+             print("Controller2 start load data")
+            
+        })
+        
+      
         view.addSubview(tb!)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+         print("Controller2 view will appear")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("Controller2 view did appear")
+    }
+    
     override func viewWillLayoutSubviews() {
         tb?.frame = self.view.bounds
     }

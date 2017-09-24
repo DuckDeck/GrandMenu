@@ -8,7 +8,7 @@
 //
 
 import UIKit
-
+//recomand you start to request date in the viewWillAppear func to get data
 open class GrandContentViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
 
     open var canScroll = false;
