@@ -7,11 +7,8 @@
 //
 
 import UIKit
-
 open  class GrandBaseTable: UITableView,UIGestureRecognizerDelegate {
-
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
-
 }

@@ -8,11 +8,11 @@
 
 import UIKit
 
-class GrandCellTableViewCell: UITableViewCell {
+open class GrandCellTableViewCell: UITableViewCell {
 
-    var  pageContentView:GrandPageContentView?
-    var vcs = [UIViewController]()
-    var cellCanScroll = false{
+   open  var  pageContentView:GrandPageContentView?
+   open  var vcs = [UIViewController]()
+   open   var cellCanScroll = false{
         didSet{
             for vc in vcs{
                 if let v = vc as? GrandContentViewController{
@@ -22,16 +22,4 @@ class GrandCellTableViewCell: UITableViewCell {
             }
         }
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

@@ -10,18 +10,19 @@
 import UIKit
 
 open class GrandContentViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
-    var canScroll = false;
-    var tableView = UITableView()
-    var fingerIsTouch = false
+
+    open var canScroll = false;
+    open var tableView = UITableView()
+    open var fingerIsTouch = false
     
     override open func viewDidLoad() {
         super.viewDidLoad()
        tableView = UITableView()
        tableView.dataSource = self
-        tableView.delegate = self
-       
+       tableView.delegate = self
         view.addSubview(tableView)
     }
+    
     override open func viewWillLayoutSubviews() {
        tableView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height - CGFloat(menuHeight))
     }
@@ -38,7 +39,8 @@ open class GrandContentViewController: UIViewController,UITableViewDataSource,UI
         return UITableViewCell()
     }
 
-    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+
+    open func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         fingerIsTouch = true
     }
 

@@ -8,16 +8,16 @@
 
 import UIKit
 
-@objc protocol GrandPageContentViewDelagate {
+@objc public protocol GrandPageContentViewDelagate {
   @objc optional  func contentViewWillBeginDragging(contentview:GrandPageContentView)
   @objc optional  func contentViewDidScroll(contentview:GrandPageContentView,startIndex:CGFloat,endIndex:CGFloat,progress:CGFloat)
   @objc optional  func contentViewDidEndDecelerating(contentview:GrandPageContentView,startIndex:CGFloat,endIndex:CGFloat)
 }
 
-class GrandPageContentView: UIView {
+open class GrandPageContentView: UIView {
      let cellId = "GrandCelId"
 
-    open var delegate:GrandPageContentViewDelagate?
+    weak open var delegate:GrandPageContentViewDelagate?
     open var contentViewCurrentIndex = 0{
         didSet{
             if contentViewCurrentIndex < 0 || contentViewCurrentIndex > self.childViewController!.count-1{
@@ -34,13 +34,13 @@ class GrandPageContentView: UIView {
         }
     }
     
-    fileprivate var parentViewController:UIViewController?
+    weak fileprivate var parentViewController:UIViewController?
     fileprivate var childViewController:[UIViewController]?
     fileprivate var collectionView:UICollectionView?
     fileprivate var startOffsetX:CGFloat = 0.0
     fileprivate var isSelectBtn = false
     
-     init(frame: CGRect,childViewControllers:[UIViewController],parentViewController:UIViewController,delegate:GrandPageContentViewDelagate) {
+    public init(frame: CGRect,childViewControllers:[UIViewController],parentViewController:UIViewController,delegate:GrandPageContentViewDelagate) {
         super.init(frame: frame)
         self.parentViewController = parentViewController
         self.childViewController = childViewControllers
@@ -64,22 +64,21 @@ class GrandPageContentView: UIView {
         }
         
         addSubview(self.collectionView!)
-        
     }
     
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
 }
 
 extension GrandPageContentView:UICollectionViewDataSource,UICollectionViewDelegate{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.childViewController?.count ?? 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
         cell.contentView.subviews.forEach { (v) in
             v.removeFromSuperview()
@@ -90,13 +89,13 @@ extension GrandPageContentView:UICollectionViewDataSource,UICollectionViewDelega
         return cell
     }
     
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         isSelectBtn = false
         startOffsetX = scrollView.contentOffset.x
         delegate?.contentViewWillBeginDragging?(contentview: self)
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if isSelectBtn {
             return
         }
@@ -121,11 +120,10 @@ extension GrandPageContentView:UICollectionViewDataSource,UICollectionViewDelega
             endIndex = startIndex - 1
             endIndex = endIndex < 0 ? 0 : endIndex
         }
-        
         delegate?.contentViewDidScroll?(contentview: self, startIndex: startIndex, endIndex: endIndex, progress: progress)
     }
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let scrollViewWidth = scrollView.bounds.size.width
         let currentOffsetX = scrollView.contentOffset.x
         let startIndex = floor(startOffsetX / scrollViewWidth)
@@ -133,7 +131,4 @@ extension GrandPageContentView:UICollectionViewDataSource,UICollectionViewDelega
         delegate?.contentViewDidEndDecelerating?(contentview: self, startIndex: startIndex, endIndex: endIndex)
     }
     
-
-    
-   
 }
