@@ -9,12 +9,12 @@
 
 import UIKit
 
-class GrandContentViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+open class GrandContentViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     var canScroll = false;
     var tableView = UITableView()
     var fingerIsTouch = false
     
-    override func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
        tableView = UITableView()
        tableView.dataSource = self
@@ -22,28 +22,31 @@ class GrandContentViewController: UIViewController,UITableViewDataSource,UITable
        
         view.addSubview(tableView)
     }
-    override func viewWillLayoutSubviews() {
-       tableView.frame = self.view.bounds
+    override open func viewWillLayoutSubviews() {
+       tableView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height - CGFloat(menuHeight))
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+   open var menuHeight:Float{
+        return 0
+    }
+    
+   open  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return UITableViewCell()
     }
 
-
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         fingerIsTouch = true
     }
 
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    open func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         fingerIsTouch = false
     }
 
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    open func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if !canScroll{
             scrollView.contentOffset = CGPoint()
         }
@@ -54,7 +57,6 @@ class GrandContentViewController: UIViewController,UITableViewDataSource,UITable
         }
         tableView.showsVerticalScrollIndicator = canScroll
     }
-
 }
 
 

@@ -22,6 +22,10 @@ class ScollViewController: GrandContentViewController {
         }
     }
     
+    override var menuHeight: Float{
+        return 64
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrData!.count
     }
