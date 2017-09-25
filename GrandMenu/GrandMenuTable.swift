@@ -104,6 +104,10 @@ extension GrandMenuTable:UICollectionViewDataSource,UICollectionViewDelegate{
         }
     }
     
+   public  func reloadData()  {
+        self.collectionView?.reloadData()
+    }
+    
 }
 
 
