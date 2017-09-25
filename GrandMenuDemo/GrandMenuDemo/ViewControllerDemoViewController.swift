@@ -58,7 +58,6 @@ class ViewControllerDemoViewController: UIViewController {
         arrControllers?.append(vc9)
         arrControllers?.append(vc10)
         
-
         grandMenuTable = GrandMenuTable(frame: CGRect(x: 0, y: grandMenu!.frame.maxY, width: UIScreen.main.bounds.size.width, height: view.frame.size.height - 104), childViewControllers: arrControllers!, parentViewController: self)
         grandMenuTable?.scrollToIndex = {[weak self](index:Int)in
             self?.grandMenu?.selectSlideBarItemAtIndex(index)

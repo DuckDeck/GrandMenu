@@ -8,8 +8,9 @@
 //
 
 import UIKit
-
+//recomand you start to request date in the viewWillAppear func to get data
 open class GrandContentViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+
     open var canScroll = false;
     open var tableView = UITableView()
     open var fingerIsTouch = false
@@ -21,28 +22,33 @@ open class GrandContentViewController: UIViewController,UITableViewDataSource,UI
        tableView.delegate = self
         view.addSubview(tableView)
     }
+    
     override open func viewWillLayoutSubviews() {
-       tableView.frame = self.view.bounds
+       tableView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height - CGFloat(menuHeight))
     }
 
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+   open var menuHeight:Float{
+        return 0
+    }
+    
+   open  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
     }
 
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return UITableViewCell()
     }
 
 
-    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    open func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         fingerIsTouch = true
     }
 
-    public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    open func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         fingerIsTouch = false
     }
 
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    open func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if !canScroll{
             scrollView.contentOffset = CGPoint()
         }
@@ -53,7 +59,6 @@ open class GrandContentViewController: UIViewController,UITableViewDataSource,UI
         }
         tableView.showsVerticalScrollIndicator = canScroll
     }
-
 }
 
 

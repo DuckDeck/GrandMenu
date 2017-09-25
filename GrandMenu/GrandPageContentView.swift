@@ -80,10 +80,22 @@ extension GrandPageContentView:UICollectionViewDataSource,UICollectionViewDelega
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-        cell.contentView.subviews.forEach { (v) in
+        cell.contentView.subviews.forEach { (v) in  // because reuse, you need remove the previous view
             v.removeFromSuperview()
         }
         let childVc = self.childViewController![indexPath.item]
+        if let count = self.childViewController?.count{
+            if indexPath.item > 0 && indexPath.item < count - 1{
+                assert( self.childViewController![indexPath.item - 1].view != nil)
+                assert( self.childViewController![indexPath.item + 1].view != nil)
+            }
+            else if indexPath.item == 0{
+                assert( self.childViewController![indexPath.item + 1].view != nil)
+            }
+            else{
+                  assert( self.childViewController![indexPath.item - 1].view != nil)
+            }
+        }
         childVc.view.frame = cell.contentView.bounds
         cell.contentView.addSubview(childVc.view)
         return cell
