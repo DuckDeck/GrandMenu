@@ -2,9 +2,9 @@
 
 这个文件需要更新
 === 
-##GrandMenu is a powerful and simple Menu  【是一个简单且使用方便的菜单工具】
+##GrandMenu 是一个简单且使用方便的菜单工具
 
-StarReview is a simple and useful menu tool. It provide GrandTableMenu which is a rotated table to supporting GrandMenu. it achieve neteasy news effects(now completed, but liked)**GrandMenu是一个简单且使用方便的菜单工具, 并且提供了一个GrandTableMenu来配套使用,两者配合可以实现类似部分网易新闻的效果**
+**GrandMenu是一个简单且使用方便的菜单工具, 并且提供了一个GrandTableMenu来配套使用,两者配合可以实现类似部分网易新闻的效果**
 
 ##Key Features 【关键特点】
 * Custom menu title and bar color**菜单标题和颜色,字体,以及下面的Bar可以完全自定义**
