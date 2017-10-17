@@ -44,7 +44,7 @@ class ViewDemoViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     
     
-    func changeScrollStatus()  {
+    @objc func changeScrollStatus()  {
         canScroll = true
         contentCell?.cellCanScroll = false
     }

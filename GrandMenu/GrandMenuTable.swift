@@ -79,15 +79,17 @@ extension GrandMenuTable:UICollectionViewDataSource,UICollectionViewDelegate{
         }
         let childVc = self.childViewController![indexPath.item]
         if let count = self.childViewController?.count{
-            if indexPath.item > 0 && indexPath.item < count - 1{
-                assert( self.childViewController![indexPath.item - 1].view != nil)
-                assert( self.childViewController![indexPath.item + 1].view != nil)
-            }
-            else if indexPath.item == 0{
-                assert( self.childViewController![indexPath.item + 1].view != nil)
-            }
-            else{
-                assert( self.childViewController![indexPath.item - 1].view != nil)
+            if count >= 2{
+                if indexPath.item > 0 && indexPath.item < count - 1{
+                    assert( self.childViewController![indexPath.item - 1].view != nil)
+                    assert( self.childViewController![indexPath.item + 1].view != nil)
+                }
+                else if indexPath.item == 0{
+                    assert( self.childViewController![indexPath.item + 1].view != nil)
+                }
+                else{
+                    assert( self.childViewController![indexPath.item - 1].view != nil)
+                }
             }
         }
         childVc.view.frame = cell.contentView.bounds

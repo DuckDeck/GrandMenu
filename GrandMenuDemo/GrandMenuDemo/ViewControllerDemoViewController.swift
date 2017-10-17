@@ -72,14 +72,14 @@ class ViewControllerDemoViewController: UIViewController {
 
     
 
-    func changeColor(){
+    @objc func changeColor(){
         let index = Int(arc4random()) % colors.count
         grandMenu?.itemSeletedColor = colors[index]
         grandMenu?.sliderColor = colors[index]
         let index2 = Int(arc4random()) % colors.count
         grandMenu?.itemColor = colors[index2]
     }
-    func changeFont(){
+    @objc func changeFont(){
         if let font = grandMenu?.itemFont
         {
             grandMenu?.itemFont = font + 0.5
