@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     var tbMenu:UITableView?
-    var arrMenu:[String] = ["使用ViewController","使用View"]
+    var arrMenu:[String] = ["使用ViewController","可以上下滑动的菜单View"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

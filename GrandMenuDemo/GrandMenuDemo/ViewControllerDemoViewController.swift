@@ -87,7 +87,7 @@ class ViewControllerDemoViewController: UIViewController {
     }
 
     deinit {
-        print("123")
+        print("ViewControllerDemoViewController deinit")
     }
     
 }

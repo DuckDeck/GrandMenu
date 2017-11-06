@@ -133,7 +133,7 @@ class ViewDemoViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     deinit {
         NotificationCenter.default.removeObserver(self)
-        print("123")
+        print("ViewDemoViewController de init")
     }
 }
 
