@@ -26,8 +26,8 @@ open class GrandMenuTable: UIView {
             self.collectionView?.isScrollEnabled = self.contentViewCanScroll
         }
     }
-    
-   weak fileprivate var parentViewController:UIViewController?
+    open var isNeedNearPagePreload = true  
+    weak fileprivate var parentViewController:UIViewController?
     fileprivate var childViewController:[UIViewController]?
     fileprivate var collectionView:UICollectionView?
     fileprivate var startOffsetX:CGFloat = 0.0
@@ -78,17 +78,19 @@ extension GrandMenuTable:UICollectionViewDataSource,UICollectionViewDelegate{
             v.removeFromSuperview()
         }
         let childVc = self.childViewController![indexPath.item]
-        if let count = self.childViewController?.count{
-            if count >= 2{
-                if indexPath.item > 0 && indexPath.item < count - 1{
-                    assert( self.childViewController![indexPath.item - 1].view != nil)
-                    assert( self.childViewController![indexPath.item + 1].view != nil)
-                }
-                else if indexPath.item == 0{
-                    assert( self.childViewController![indexPath.item + 1].view != nil)
-                }
-                else{
-                    assert( self.childViewController![indexPath.item - 1].view != nil)
+        if isNeedNearPagePreload{
+            if let count = self.childViewController?.count{
+                if count >= 2{
+                    if indexPath.item > 0 && indexPath.item < count - 1{
+                        assert( self.childViewController![indexPath.item - 1].view != nil)
+                        assert( self.childViewController![indexPath.item + 1].view != nil)
+                    }
+                    else if indexPath.item == 0{
+                        assert( self.childViewController![indexPath.item + 1].view != nil)
+                    }
+                    else{
+                        assert( self.childViewController![indexPath.item - 1].view != nil)
+                    }
                 }
             }
         }
