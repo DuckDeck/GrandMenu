@@ -23,12 +23,15 @@ open class GrandMenuItem: UIView {
         }
     }
     
-    var fontSize:Float = 15{
+    
+    
+    var Font:UIFont = UIFont.systemFont(ofSize: 15){
         didSet{
             setNeedsDisplay()
         }
     }
-    var selectedFontSize:Float = 17{
+    
+    var selectedFont:UIFont = UIFont.systemFont(ofSize: 15){
         didSet{
             setNeedsDisplay()
         }
@@ -79,10 +82,10 @@ open class GrandMenuItem: UIView {
     }
     func titleFont()->UIFont{
         if selected{
-            return UIFont.boldSystemFont(ofSize: CGFloat(selectedFontSize))
+            return selectedFont
         }
         else{
-            return UIFont.boldSystemFont(ofSize: CGFloat(fontSize))
+            return Font
         }
     }
     func titleColor()->UIColor{

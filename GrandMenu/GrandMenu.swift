@@ -57,7 +57,20 @@ open class GrandMenu: UIView,GraneMenuItemDelegate {
             }
             if  let items = arrItems{
                 for item in items{
-                    item.fontSize = itemFont!
+                    item.Font = UIFont.systemFont(ofSize: CGFloat(itemFont!))
+                }
+            }
+        }
+    }
+    
+    open var itemUIFont:UIFont?{
+        didSet{
+            if itemUIFont == nil{
+                return
+            }
+            if  let items = arrItems{
+                for item in items{
+                    item.Font = itemUIFont!
                 }
             }
         }
@@ -70,12 +83,25 @@ open class GrandMenu: UIView,GraneMenuItemDelegate {
             }
             if  let items = arrItems{
                 for item in items{
-                    item.selectedFontSize = itemSelectedFont!
+                    item.selectedFont = UIFont.systemFont(ofSize: CGFloat(itemSelectedFont!))
                 }
             }
         }
     }
     
+    open  var itemSelectedUIFont:UIFont?{
+        didSet{
+            
+            if itemSelectedUIFont == nil{
+                return
+            }
+            if  let items = arrItems{
+                for item in items{
+                    item.selectedFont = itemSelectedUIFont!
+                }
+            }
+        }
+    }
     
     open var selectMenu:((_ item:GrandMenuItem, _ index:Int)->())?
     
@@ -150,13 +176,21 @@ open class GrandMenu: UIView,GraneMenuItemDelegate {
             item.selectedColor = itemSeletedColor
             item.color = itemColor
             if let f = itemFont{
-                item.fontSize = f
+                item.Font = UIFont.systemFont(ofSize: CGFloat(f))
+            }
+            if let f = itemUIFont{
+                item.Font = f
             }
             if let sf = itemSelectedFont{
-                item.selectedFontSize = sf
+                item.selectedFont = UIFont.systemFont(ofSize: CGFloat(sf))
             }
+           
+            if let sf = itemSelectedUIFont{
+                item.selectedFont = sf
+            }
+            
             item.delegate = weakSelf
-            var itemWidth = GrandMenuItem.getTitleWidth(title, fontSize: item.fontSize, leftrightOffset: itemLeftRightOffset)
+            var itemWidth = GrandMenuItem.getTitleWidth(title, fontSize: Float(item.Font.pointSize), leftrightOffset: itemLeftRightOffset)
             
             if itemWidth > maxItemWidth{
                 maxItemWidth = itemWidth

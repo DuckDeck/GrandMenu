@@ -20,7 +20,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         tbMenu?.delegate = self
         tbMenu?.tableFooterView = UIView()
         view.addSubview(tbMenu!)
-
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrMenu.count
