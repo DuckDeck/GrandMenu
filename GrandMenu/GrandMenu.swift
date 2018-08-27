@@ -11,7 +11,11 @@ import UIKit
 open class GrandMenu: UIView,GraneMenuItemDelegate {
     open var arrItemsTitle:[String]?
     open var sliderBarLeftRightOffset = 15
-    open var itemLeftRightOffset:Float = 10
+    open var itemLeftRightOffset:Float = 10{
+        didSet{
+            setupItems()
+        }
+    }
     open  var sliderBarHeight = 2
     open  var sliderColor = UIColor.red{
         didSet{
@@ -146,6 +150,7 @@ open class GrandMenu: UIView,GraneMenuItemDelegate {
             }
         }
         arrItemsTitle = titles
+        setupItems()
     }
     open func addBottomLine(_ bgColor:UIColor,size:CGSize){
         vBottomLine = UIView(frame: CGRect(x: (frame.size.width - size.width) / 2, y: frame.size.height, width: size.width, height: size.height))
@@ -154,10 +159,7 @@ open class GrandMenu: UIView,GraneMenuItemDelegate {
         frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.size.width, height: vBottomLine!.frame.maxY)
     }
     
-    open override func willMove(toSuperview newSuperview: UIView?) {
-        super.willMove(toSuperview: newSuperview)
-        setupItems()
-    }
+    
     
     
     func setupItems(){
