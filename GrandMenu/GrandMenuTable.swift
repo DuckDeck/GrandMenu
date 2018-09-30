@@ -18,7 +18,7 @@ open class GrandMenuTable: UIView {
             }
             isSelectBtn = true
             let path = IndexPath(row: self.contentViewCurrentIndex, section: 0)
-            collectionView?.scrollToItem(at: path, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
+            collectionView?.scrollToItem(at: path, at: UICollectionView.ScrollPosition.centeredHorizontally, animated: true)
         }
     }
     open var contentViewCanScroll = true{
@@ -53,7 +53,7 @@ open class GrandMenuTable: UIView {
         self.collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         
         for vc in self.childViewController!{
-            self.parentViewController?.addChildViewController(vc)
+            self.parentViewController?.addChild(vc)
         }
         
         addSubview(self.collectionView!)

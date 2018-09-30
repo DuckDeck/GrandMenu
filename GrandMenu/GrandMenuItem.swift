@@ -67,14 +67,14 @@ open class GrandMenuItem: UIView {
         let titleX = (frame.width - titleSize().width) * 0.5
         let titleY = (frame.height - titleSize().height) * 0.5
         let titleRect = CGRect(x: titleX, y: titleY, width: titleSize().width, height: titleSize().height)
-        let attributes = [NSAttributedStringKey.font:titleFont(),NSAttributedStringKey.foregroundColor:titleColor()]
+        let attributes = [NSAttributedString.Key.font:titleFont(),NSAttributedString.Key.foregroundColor:titleColor()]
         if let currentTitle = title{
             (currentTitle as NSString).draw(in: titleRect, withAttributes: attributes)
         }
     }
     
     func titleSize()->CGSize{
-        let attribures = [NSAttributedStringKey.font:titleFont()]
+        let attribures = [NSAttributedString.Key.font:titleFont()]
         var size = (title! as NSString).boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: CGFloat(MAXFLOAT)), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: attribures, context: nil).size
         size.width = ceil(size.width)
         size.height = ceil(size.height)
@@ -99,7 +99,7 @@ open class GrandMenuItem: UIView {
     }
     
     static func getTitleWidth(_ title:String,fontSize: Float,leftrightOffset:Float = 10)->Float{
-        let attributes = [NSAttributedStringKey.font:UIFont.systemFont(ofSize: CGFloat(fontSize))]
+        let attributes = [NSAttributedString.Key.font:UIFont.systemFont(ofSize: CGFloat(fontSize))]
         var size = (title as NSString).boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: CGFloat(MAXFLOAT)), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: attributes, context: nil).size
         size.width = ceil(size.width) + CGFloat(leftrightOffset * 2)
         return Float(size.width)
