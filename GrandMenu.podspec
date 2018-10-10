@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "GrandMenu"
-  s.version      = "1.1.3"
+  s.version      = "1.2.0"
   s.summary      = "GrandMenu is a powerful and simple Menu"
 
   # This description is used to generate tags and improve search results.
@@ -80,7 +80,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/DuckDeck/GrandMenu.git", :tag => "1.1.3" }
+  s.source       = { :git => "https://github.com/DuckDeck/GrandMenu.git", :tag => "1.2.0" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
