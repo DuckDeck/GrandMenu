@@ -105,15 +105,16 @@ class ViewDemoViewController: UIViewController,UITableViewDelegate,UITableViewDa
         }
     }
     
-    func contentViewDidEndDecelerating(_ contentView: GrandPageContentView!, start startIndex: Int, end endIndex: Int) {
-        
-        menu.selectSlideBarItemAtIndex(endIndex)
+    func contentViewDidEndDecelerating(contentview: GrandPageContentView, startIndex: CGFloat, endIndex: CGFloat) {
+        menu.selectSlideBarItemAtIndex(Int(endIndex))
         tb.isScrollEnabled = true
     }
     
-    func contentViewDidScroll(_ contentView: GrandPageContentView!, start startIndex: Int, end endIndex: Int, progress: CGFloat) {
-        tb.isScrollEnabled = false
+    func contentViewDidScroll(contentview: GrandPageContentView, startIndex: CGFloat, endIndex: CGFloat, progress: CGFloat) {
+         tb.isScrollEnabled = false
     }
+
+
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let bottomCellOffset = tb.rect(forSection: 1).origin.y - 64

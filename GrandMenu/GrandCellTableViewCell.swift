@@ -12,7 +12,7 @@ open class GrandCellTableViewCell: UITableViewCell {
 
    open  var  pageContentView:GrandPageContentView?
    open  var vcs = [UIViewController]()
-   open   var cellCanScroll = false{
+   open  var cellCanScroll = false{
         didSet{
             for vc in vcs{
                 if let v = vc as? GrandContentViewController{
