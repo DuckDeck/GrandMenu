@@ -10,7 +10,11 @@ import UIKit
 
 open class GrandMenu: UIView,GraneMenuItemDelegate {
     open var arrItemsTitle:[String]?
-    open var sliderBarLeftRightOffset = 15
+    open var sliderBarLeftRightOffset = 15{
+        didSet{
+            setupItems()
+        }
+    }
     open var itemLeftRightOffset:Float = 10{
         didSet{
             setupItems()
