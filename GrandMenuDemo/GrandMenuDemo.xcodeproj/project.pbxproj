@@ -28,6 +28,7 @@
 		AE99792F1F73C1D7009A5A03 /* GrandContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9979281F73C1D7009A5A03 /* GrandContentViewController.swift */; };
 		AE9979321F73C1D7009A5A03 /* GrandMenuTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE99792B1F73C1D7009A5A03 /* GrandMenuTable.swift */; };
 		AE9979331F73C1D7009A5A03 /* GrandBaseTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE99792C1F73C1D7009A5A03 /* GrandBaseTable.swift */; };
+		AEAEDF8F241B6495002B2376 /* scroll menu.gif in Resources */ = {isa = PBXBuildFile; fileRef = AEAEDF8E241B6495002B2376 /* scroll menu.gif */; };
 		AEFF8D7B1F73E9AB002E1AE6 /* ScollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFF8D7A1F73E9AB002E1AE6 /* ScollViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		AE9979281F73C1D7009A5A03 /* GrandContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrandContentViewController.swift; sourceTree = "<group>"; };
 		AE99792B1F73C1D7009A5A03 /* GrandMenuTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrandMenuTable.swift; sourceTree = "<group>"; };
 		AE99792C1F73C1D7009A5A03 /* GrandBaseTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrandBaseTable.swift; sourceTree = "<group>"; };
+		AEAEDF8E241B6495002B2376 /* scroll menu.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "scroll menu.gif"; sourceTree = "<group>"; };
 		AEFF8D7A1F73E9AB002E1AE6 /* ScollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScollViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,6 +135,7 @@
 		A2223E2B1C584F5200302C19 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				AEAEDF8E241B6495002B2376 /* scroll menu.gif */,
 				A2223E301C5851D900302C19 /* 3.gif */,
 				A2223E2E1C5851D600302C19 /* 2.gif */,
 				A2223E2C1C584F7E00302C19 /* 1.png */,
@@ -204,6 +207,7 @@
 				A2223E2D1C584F7E00302C19 /* 1.png in Resources */,
 				A205AA7B1C488E890043F5F6 /* LaunchScreen.storyboard in Resources */,
 				A205AA781C488E890043F5F6 /* Assets.xcassets in Resources */,
+				AEAEDF8F241B6495002B2376 /* scroll menu.gif in Resources */,
 				A2223E2F1C5851D600302C19 /* 2.gif in Resources */,
 				A2223E311C5851D900302C19 /* 3.gif in Resources */,
 			);

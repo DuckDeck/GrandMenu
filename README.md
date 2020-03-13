@@ -1,29 +1,26 @@
-# GrandMenu
 
-
-=== 
 ## GrandMenu 是一个简单且使用方便的菜单工具
 
 **GrandMenu是一个简单且使用方便的菜单工具, 并且提供了一个GrandTableMenu来配套使用,两者配合可以实现类似部分网易新闻的效果**
 
-##【关键特点】
+## 【关键特点】
 * **菜单标题和颜色,字体,以及下面的Bar可以完全自定义**
 * **菜单标题和Bar的大小和位置完全是自动分配的**
 * **可以自动调整表格的大小**
 * **使用Block来回调菜单的点击事件和Table的滚动事件**
 
-##【安装需求】
+## 【安装需求】
 
 Xcode 9.0 and iOS 8.0(Swift3.0 Version)
 
-##【安装】
+## 【安装】
 + **如果你想使用Cocoapods，直接pod 'GrandMenu'，再安装即可**
 
-+ **如果你想使用文件，直接把GrandMenu.swift，GrandMenuItem.swift和GrandMenuTable.swift拷贝到项目即可**
++ **如果你想使用文件，直接把GrandMenu文件夹下面的所有文件拷贝到项目即可**
 
 
 
-##【如何使用】
+## 【如何使用】
 **请参考下面的代码**
 ```swift
 grandMenu = GrandMenu(frame:CGRect(x: 0, y: 64, width: UIScreen.mainScreen().bounds.size.width, height: 40) , titles:  ["First","Second","Third","Fouth","Fifth"]) //init the GrandMenu and assign the menu titles, and also you can assign titles later
