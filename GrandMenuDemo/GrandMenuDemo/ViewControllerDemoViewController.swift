@@ -21,7 +21,9 @@ class ViewControllerDemoViewController: UIViewController {
         navigationItem.rightBarButtonItem = btn
         let btn2 = UIBarButtonItem(title: "字大小", style: .plain, target: self, action: #selector(ViewControllerDemoViewController.changeFont))
         navigationItem.rightBarButtonItems?.append(btn2)
-        grandMenu = GrandMenu(frame:CGRect(x: 0, y: 64, width: UIScreen.main.bounds.size.width, height: 40) , titles:  ["First","Second","Third","FouthFouthFouth","Fifth","1","2","Thir333333d","Fo44uth","7"])
+        let height1 = UIApplication.shared.statusBarFrame.height
+        let height2 = navigationController?.navigationBar.frame.size.height
+        grandMenu = GrandMenu(frame:CGRect(x: 0, y: height1 + (height2 ?? 0), width: UIScreen.main.bounds.size.width, height: 40) , titles:  ["First","Second","Third","FouthFouthFouth","Fifth","1","2","Thir333333d","Fo44uth","7"])
         grandMenu?.backgroundColor = UIColor.white
         grandMenu?.selectMenu = {[weak self](item:GrandMenuItem, index:Int) in
               self?.grandMenuTable?.contentViewCurrentIndex = index
@@ -57,7 +59,6 @@ class ViewControllerDemoViewController: UIViewController {
         arrControllers?.append(vc8)
         arrControllers?.append(vc9)
         arrControllers?.append(vc10)
-        
         grandMenuTable = GrandMenuTable(frame: CGRect(x: 0, y: grandMenu!.frame.maxY, width: UIScreen.main.bounds.size.width, height: view.frame.size.height - 104), childViewControllers: arrControllers!, parentViewController: self)
         grandMenuTable?.scrollToIndex = {[weak self](index:Int)in
             self?.grandMenu?.selectSlideBarItemAtIndex(index)
